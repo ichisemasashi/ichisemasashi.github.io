@@ -1,0 +1,179 @@
+---
+title: Hy言語事始
+---
+# Hy言語事始
+
+まず、[githubのhy/doc/quickstart.rst](https://github.com/hylang/hy/blob/master/docs/quickstart.rst)を参考にhyに触ってみます。
+
+
+## [Virtual Python Environment](https://virtualenv.pypa.io/en/latest/)の準備.
+
+### [Virtualenvのインストール](http://docs.hylang.org/en/latest/quickstart.html)
+
+    $ pip install virtualenv
+
+### Virtualenvの初期設定
+
+    $ virtualenv <work dir>
+
+今回、work dirとしてHyを作ります。
+
+    $ mkdir Hy
+    $ virtualenv Hy
+    Requirement already satisfied (use --upgrade to upgrade): virtualenv in /usr/lib/python2.7/dist-packages
+    Cleaning up...
+
+
+### Virtualenvの起動
+
+    $ cd Hy
+    $ source bin/activate
+
+#### hy言語のインストール
+
+```
+$ pip install hy
+Downloading/unpacking hy
+  Downloading hy-0.11.1.tar.gz (43kB): 43kB downloaded
+  Running setup.py (path:/home/ubuntu/workspace/Hy/build/hy/setup.py) egg_info for package hy
+
+Downloading/unpacking rply>=0.7.0 (from hy)
+  Downloading rply-0.7.4-py2.py3-none-any.whl
+Downloading/unpacking astor>=0.5 (from hy)
+  Downloading astor-0.5-py2.py3-none-any.whl
+Downloading/unpacking clint>=0.4 (from hy)
+  Downloading clint-0.5.1.tar.gz
+  Running setup.py (path:/home/ubuntu/workspace/Hy/build/clint/setup.py) egg_info for package clint
+
+    warning: no files found matching 'recursive-include'
+    warning: no files found matching 'docs'
+Downloading/unpacking appdirs (from rply>=0.7.0->hy)
+  Downloading appdirs-1.4.0-py2.py3-none-any.whl
+Downloading/unpacking args (from clint>=0.4->hy)
+  Downloading args-0.1.0.tar.gz
+  Running setup.py (path:/home/ubuntu/workspace/Hy/build/args/setup.py) egg_info for package args
+
+Installing collected packages: hy, rply, astor, clint, appdirs, args
+  Running setup.py install for hy
+
+    Installing hy script to /home/ubuntu/workspace/Hy/bin
+    Installing hyc script to /home/ubuntu/workspace/Hy/bin
+    Installing hy2py script to /home/ubuntu/workspace/Hy/bin
+  Running setup.py install for clint
+
+    warning: no files found matching 'recursive-include'
+    warning: no files found matching 'docs'
+  Running setup.py install for args
+
+Successfully installed hy rply astor clint appdirs args
+Cleaning up...
+```    
+
+
+#### hy-REPLを起動
+
+    $ hy
+    hy 0.11.1 using CPython(default) 2.7.6 on Linux
+    => (print "Hy!")
+    Hy!
+    => (defn salutationsnm [name] (print (+ "Hy " name "!")))
+    => (salutationsnm "YourName")
+    Hy YourName!
+    =>
+- REPLを終了したければ`CTRL-D`
+
+#### hyスクリプトファイルを実行
+
+```
+(Hy)ichisemasashi:~/workspace/Hy $ cat > awesome.hy
+#! /usr/bin/env hy
+(print "I was going to code in Python syntax, but then I got Hy.")
+^C
+(Hy)ichisemasashi:~/workspace/Hy $ chmod +x awesome.hy
+(Hy)ichisemasashi:~/workspace/Hy $ /awesome.hy
+bash: /awesome.hy: No such file or directory
+(Hy)ichisemasashi:~/workspace/Hy $ ./awesome.hy
+I was going to code in Python syntax, but then I got Hy.
+```
+
+
+### Virtualenvの終了
+
+    $ deactivate
+
+### Virtualenv環境を削除したければ
+
+    (Hy)$ deactivate
+    $ cd ..
+    $ rm -r hy
+
+# 今回のログ
+
+```
+ichisemasashi:~/workspace $ mkdir Hy
+ichisemasashi:~/workspace $ cd Hy
+ichisemasashi:~/workspace/Hy $ cd ..
+ichisemasashi:~/workspace $ which python
+/usr/bin/python
+ichisemasashi:~/workspace $ pip install virtualenv
+Requirement already satisfied (use --upgrade to upgrade): virtualenv in /usr/lib/python2.7/dist-packages
+Cleaning up...
+ichisemasashi:~/workspace $ virtualenv Hy
+New python executable in Hy/bin/python
+Installing setuptools, pip...done.
+ichisemasashi:~/workspace $ cd Hy
+ichisemasashi:~/workspace/Hy $ source bin/activate
+(Hy)ichisemasashi:~/workspace/Hy $ pip install hy
+Downloading/unpacking hy
+  Downloading hy-0.11.1.tar.gz (43kB): 43kB downloaded
+  Running setup.py (path:/home/ubuntu/workspace/Hy/build/hy/setup.py) egg_info for package hy
+
+Downloading/unpacking rply>=0.7.0 (from hy)
+  Downloading rply-0.7.4-py2.py3-none-any.whl
+Downloading/unpacking astor>=0.5 (from hy)
+  Downloading astor-0.5-py2.py3-none-any.whl
+Downloading/unpacking clint>=0.4 (from hy)
+  Downloading clint-0.5.1.tar.gz
+  Running setup.py (path:/home/ubuntu/workspace/Hy/build/clint/setup.py) egg_info for package clint
+
+    warning: no files found matching 'recursive-include'
+    warning: no files found matching 'docs'
+Downloading/unpacking appdirs (from rply>=0.7.0->hy)
+  Downloading appdirs-1.4.0-py2.py3-none-any.whl
+Downloading/unpacking args (from clint>=0.4->hy)
+  Downloading args-0.1.0.tar.gz
+  Running setup.py (path:/home/ubuntu/workspace/Hy/build/args/setup.py) egg_info for package args
+
+Installing collected packages: hy, rply, astor, clint, appdirs, args
+  Running setup.py install for hy
+
+    Installing hy script to /home/ubuntu/workspace/Hy/bin
+    Installing hyc script to /home/ubuntu/workspace/Hy/bin
+    Installing hy2py script to /home/ubuntu/workspace/Hy/bin
+  Running setup.py install for clint
+
+    warning: no files found matching 'recursive-include'
+    warning: no files found matching 'docs'
+  Running setup.py install for args
+
+Successfully installed hy rply astor clint appdirs args
+Cleaning up...
+(Hy)ichisemasashi:~/workspace/Hy $ hy
+hy 0.11.1 using CPython(default) 2.7.6 on Linux
+=> (print "Hy!")
+Hy!
+=> (defn salutationsnm [name] (print (+ "Hy " name "!")))
+=> (salutationsnm "YourName")
+Hy YourName!
+=>
+(Hy)ichisemasashi:~/workspace/Hy $ cat > awesome.hy
+#! /usr/bin/env hy
+(print "I was going to code in Python syntax, but then I got Hy.")
+^C
+(Hy)ichisemasashi:~/workspace/Hy $ chmod +x awesome.hy
+(Hy)ichisemasashi:~/workspace/Hy $ /awesome.hy
+bash: /awesome.hy: No such file or directory
+(Hy)ichisemasashi:~/workspace/Hy $ ./awesome.hy
+I was going to code in Python syntax, but then I got Hy.
+(Hy)ichisemasashi:~/workspace/Hy $ deactivate
+```
