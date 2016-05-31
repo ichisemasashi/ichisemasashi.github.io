@@ -1,0 +1,13 @@
+---
+layout: default
+title: つけ麺旅行記
+---
+
+<div class="posts">
+<h1>{{ page.title }}</h1>
+<ul>
+{% for post in site.posts limit:3 %}
+    <li><span>{{ post.date | date_to_string }}</span>&nbsp;&raquo;&nbsp;<a href="{{ post.url }}">{{ post.title }}</a></li>
+{% endfor %}
+</ul>
+</div>
