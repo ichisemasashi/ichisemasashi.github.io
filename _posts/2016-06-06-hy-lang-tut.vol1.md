@@ -145,3 +145,123 @@ this will run
 => (+ 1 2 3)  ; we'll execute the addition, but not this comment!
 6L
 ```
+
+今日のログ
+
+```
+ichisemasashi:~/workspace $ script 2016-06-06-hy-tutu.vol.1.txt
+Script started, file is 2016-06-06-hy-tutu.vol.1.txt
+ichisemasashi:~/workspace $ cd Hy
+ichisemasashi:~/workspace/Hy $ source bin/activate
+(Hy)ichisemasashi:~/workspace/Hy $ ifconfig -a | grep inet
+          inet addr:172.17.23.68  Bcast:0.0.0.0  Mask:255.255.0.0
+          inet6 addr: fe80::42:acff:fe11:1744/64 Scope:Link
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+(Hy)ichisemasashi:~/workspace/Hy $ hy
+hy 0.11.1 using CPython(default) 2.7.6 on Linux
+=> (print "hello world")
+hello world
+=> (+ 1 3)
+4L
+=> ; basic hello world
+=> (+ 1 3 55)
+59L
+=> (setv result (- (/ (+ 1 3 88) 2) 8))
+=> (defn simple-conversation []
+...    (print "Hello!  I'd like to get to know you.  Tell me about yourself!")
+...    (setv name (raw-input "What is your name? "))
+...    (setv age (raw-input "What is your age? "))
+...    (print (+ "Hello " name "!  I see you are "
+...               age " years old.")))
+=>
+=> (simple-conversation)
+Hello!  I'd like to get to know you.  Tell me about yourself!
+What is your name? ichise
+What is your age? 44
+Hello ichise!  I see you are 44 years old.
+=> [1 2 3]
+[1L, 2L, 3L]
+=> {"dog" "bark"
+... "cat" "meow"}
+{u'dog': u'bark', u'cat': u'meow'}
+=> (, 1 2 3)
+(1L, 2L, 3L)
+=> '(1 2 3)
+(1L 2L 3L)
+=> (.strip " fooooo   ")
+u'fooooo'
+=> (setv this-string " fooooo   ")
+=> (this-string.strip)
+u'fooooo'
+=> (if (try-some-thing)
+...   (print "this is if true")
+...   (print "this is if false"))
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+NameError: name 'try_some_thing' is not defined
+=> (if true
+...   (print "this is if true")
+...   (print "this is if false")
+... )
+this is if true
+=> (setv somevar 1000)
+=> (cond
+...  [(> somevar 50)
+...   (print "That variable is too big!")]
+...  [(< somevar 10)
+...   (print "That variable is too small!")]
+...  [true
+...   (print "That variable is jussssst right!")])
+That variable is too big!
+=> (setv try-some-thing false)
+=> (if (try-some-thing)
+...   (do
+...     (print "this is if true")
+...     (print "and why not, let's keep talking about how true it is!))
+...   (print "this one's still simply just false"))
+... )
+... )
+... )
+... )
+...
+KeyboardInterrupt
+=> try-some-thing
+False
+=> (if (try-some-thing)
+...   (do
+...     (print "this is if true")
+...     (print "and why not, let's keep talking about how true it is!"))
+...   (print "this one's still simply just false"))
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+TypeError: 'bool' object is not callable
+=> (defn try-some-thing [] (= 0 1))
+=> (if (try-some-thing)
+...   (do
+...     (print "this is if true")
+...     (print "and why not, let's keep talking about how true it is!"))
+...   (print "this one's still simply just false"))
+this one's still simply just false
+=> (defn try-some-thing [] (= 0 0))
+=> (if (try-some-thing)
+...   (do
+...     (print "this is if true")
+...     (print "and why not, let's keep talking about how true it is!"))
+...   (print "this one's still simply just false"))
+this is if true
+and why not, let's keep talking about how true it is!
+=> (print "this will run")
+this will run
+=> ; (print "but this will not")
+=> (+ 1 2 3)  ; we'll execute the addition, but not this comment!
+6L
+=>
+(Hy)ichisemasashi:~/workspace/Hy $ deactivate
+ichisemasashi:~/workspace/Hy $ date
+Mon Jun  6 10:52:53 UTC 2016
+ichisemasashi:~/workspace/Hy $ exit
+exit
+Script done, file is 2016-06-06-hy-tutu.vol.1.txt
+ichisemasashi:~/workspace $
+```
