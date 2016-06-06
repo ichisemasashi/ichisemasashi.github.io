@@ -1,5 +1,8 @@
 ---
+layout: post
 title: Hy言語事始
+date:   2016-05-31 21:38:58 +0900
+categories: hy-lang
 ---
 # Hy言語事始
 
