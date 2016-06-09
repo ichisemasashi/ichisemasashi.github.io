@@ -307,3 +307,344 @@ $ hy
 かなりpythonチックなLispでした。
 Clojureに慣れていたため、かなり違和感を感じましたが、これは慣れの問題だと思います。
 pythonを利用してガシガシ何かを作るためのグルー言語みたいでした。
+
+
+## 今日のログ
+
+
+```
+ichisemasashi:~/workspace $ cd Hy
+ichisemasashi:~/workspace/Hy $ vi ~/.profile
+ichisemasashi:~/workspace/Hy $ source bin/activate
+(Hy)ichisemasashi:~/workspace/Hy $ hy
+hy 0.11.1 using CPython(default) 2.7.6 on Linux
+=> ; loop
+=> (for [i (range 10)]
+...   (print (+ "'i' is now at " (str i))))
+'i' is now at 0
+'i' is now at 1
+'i' is now at 2
+'i' is now at 3
+'i' is now at 4
+'i' is now at 5
+'i' is now at 6
+'i' is now at 7
+'i' is now at 8
+'i' is now at 9
+=> (range 10)
+xrange(10)
+=> ; ??
+=> (class (range 10))
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+NameError: name 'class' is not defined
+=> (type (range 10))                                                         
+<type 'xrange'>
+=> (import os)
+=>
+=> (if (os.path.isdir "/tmp/somedir")
+...   (os.mkdir "/tmp/somedir/anotherdir")
+...   (print "Hey, that path isn't there!"))
+Hey, that path isn't there!
+=> (os.curdir)
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+TypeError: 'str' object is not callable
+=> (doc os.curdir)
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+NameError: name 'doc' is not defined
+=> (with [[f (open "/tmp/data.in")]]
+...   (print (.read f)))
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+IOError: [Errno 2] No such file or directory: u'/tmp/data.in'
+=> (with [[f (open "../README.md")]]                                         
+...   (print (.read f)))
+
+     ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
+    '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
+    |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--,
+    '  '--'\|  |' '-' ''  ''  '\ `-' | .'  /   |  ||  '--'  /|  `---.
+     `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
+    -----------------------------------------------------------------
+
+
+Hi there! Welcome to Cloud9 IDE!
+
+To get you started, create some files, play with the terminal,
+or visit http://docs.c9.io for our documentation.
+If you want, you can also go watch some training videos at
+http://www.youtube.com/user/c9ide.
+
+Happy coding!
+The Cloud9 IDE team
+=> (setv odds-squared
+...   (list-comp
+...     (pow num 2)
+...     (num (range 100))
+...     (= (% num 2) 1)))
+=> odds-squared
+[1L, 9L, 25L, 49L, 81L, 121L, 169L, 225L, 289L, 361L, 441L, 529L, 625L, 729L, 841L, 961L, 1089L, 1225L, 1369L, 1521L, 1681L, 1849L, 2025L, 2209L, 2401L, 2601L, 2809L, 3025L, 3249L, 3481L, 3721L, 3969L, 4225L, 4489L, 4761L, 5041L, 5329L, 5625L, 5929L, 6241L, 6561L, 6889L, 7225L, 7569L, 7921L, 8281L, 8649L, 9025L, 9409L, 9801L]
+=> ; And, an example stolen shamelessly from a Clojure page:
+=> ; Let's list all the blocks of a Chessboard:
+=>
+=> (list-comp
+...   (, x y)
+...   (x (range 8)
+...    y "ABCDEFGH"))
+[(0, u'A'), (0, u'B'), (0, u'C'), (0, u'D'), (0, u'E'), (0, u'F'), (0, u'G'), (0, u'H'), (1, u'A'), (1, u'B'), (1, u'C'), (1, u'D'), (1, u'E'), (1, u'F'), (1, u'G'), (1, u'H'), (2, u'A'), (2, u'B'), (2, u'C'), (2, u'D'), (2, u'E'), (2, u'F'), (2, u'G'), (2, u'H'), (3, u'A'), (3, u'B'), (3, u'C'), (3, u'D'), (3, u'E'), (3, u'F'), (3, u'G'), (3, u'H'), (4, u'A'), (4, u'B'), (4, u'C'), (4, u'D'), (4, u'E'), (4, u'F'), (4, u'G'), (4, u'H'), (5, u'A'), (5, u'B'), (5, u'C'), (5, u'D'), (5, u'E'), (5, u'F'), (5, u'G'), (5, u'H'), (6, u'A'), (6, u'B'), (6, u'C'), (6, u'D'), (6, u'E'), (6, u'F'), (6, u'G'), (6, u'H'), (7, u'A'), (7, u'B'), (7, u'C'), (7, u'D'), (7, u'E'), (7, u'F'), (7, u'G'), (7, u'H')]
+=> (list 'a 'b)
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+TypeError: list() takes at most 1 argument (2 given)
+=> (defn optional-arg [pos1 pos2 &optional keyword1 [keyword2 42]]
+...   [pos1 pos2 keyword1 keyword2])
+=>
+=> (optional-arg 1 2)
+[1L, 2L, None, 42L]
+=> (optional-arg 1 2 3 4)
+[1L, 2L, 3L, 4L]
+=> (optional-arg :keyword1 1
+...               :pos2 2
+...               :pos1 3
+...               :keyword2 4)
+[3L, 2L, 1L, 4L]
+=> (setv args [1 2])
+=> (setv kwargs {"keyword2" 3
+...               "keyword1" 4})
+=> (apply optional-arg args kwargs)
+[1L, 2L, 4L, 3L]
+=> (defn another-style [&key {"key1" "val1" "key2" "val2"}]
+...   [key1 key2])
+=> (another-style {:key1 'a :key2 1})
+[{u'\ufdd0:key2': 1L, u'\ufdd0:key1': u'a'}, u'val2']
+=> (another-style :pos1 {:key1 'b :key2 'c})
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+TypeError: another_style() got an unexpected keyword argument 'pos1'
+=> (another-style {:pos1 0} {:key1 'b :key2 'c})                             
+[{u'\ufdd0:pos1': 0L}, {u'\ufdd0:key2': u'c', u'\ufdd0:key1': u'b'}]
+=> (defn some-func [foo bar &rest args &kwargs kwargs]
+...   (import pprint)
+...   (pprint.pprint (, foo bar args kwargs)))
+=> (some-func 1 2 3 4 5 6 7 8 9)
+(1L, 2L, (3L, 4L, 5L, 6L, 7L, 8L, 9L), {})
+=> (some-func 1 2 3 4 5 6 7 8 9 kwargs 'a)
+(1L,
+ 2L,
+ (3L, 4L, 5L, 6L, 7L, 8L, 9L, {u'keyword1': 4L, u'keyword2': 3L}, u'a'),
+ {})
+=> (some-func 1 2 3 4 5 6 7 8 9 6kwargs 'a)                                  
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+NameError: name '6kwargs' is not defined
+=> (some-func 1 2 3 4 5 6 7 8 9 &kwargs 'a)                                  
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+NameError: name '&kwargs' is not defined
+=> (some-func 1 2 3 4 5 6 7 8 9 (kwargs 'a))                                 
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+TypeError: 'dict' object is not callable
+=> (some-func 1 2 3 4 5 6 7 8 9 (&kwargs 'a))                                
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+NameError: name '&kwargs' is not defined
+=> (some-func 1 2 3 4 5 6 7 8 9 :kwargs 'a)                                  
+(1L, 2L, (3L, 4L, 5L, 6L, 7L, 8L, 9L), {'kwargs': u'a'})
+=> (some-func 1 2 3 4 5 6 7 8 9 :kwargs '(a 1))
+(1L, 2L, (3L, 4L, 5L, 6L, 7L, 8L, 9L), {'kwargs': (u'a' 1L)})
+=> (some-func 1 2 3 4 5 6 7 8 9 :apple '(a 1))                               
+(1L, 2L, (3L, 4L, 5L, 6L, 7L, 8L, 9L), {'apple': (u'a' 1L)})
+=> (defclass FooBar [object]
+...   "Yet Another Example Class"
+...   [[--init--
+...     (fn [self x]
+...       (setv self.x x)
+...       ; Currently needed for --init-- because __init__ needs None
+...       ; Hopefully this will go away :)
+...       None)]
+...
+...    [get-x
+...     (fn [self]
+...       "Return our copy of x"
+...       self.x)]])
+=> (setv foobar (FooBar '()))
+=> foobar.get-x
+<bound method FooBar.get_x of <__console__.FooBar object at 0x7f9172d44490>>
+=> (foobar.get-x)
+()
+=> (setv foobar (FooBar '(1 2 3)))
+=> (foobar.get-x)
+(1L 2L 3L)
+=> (defclass Customer [models.Model]
+...   [[name (models.CharField :max-length 255})]
+  File "<input>", line 2, column 43
+
+    [[name (models.CharField :max-length 255})]
+                                            ^
+LexException: Ran into a RCURLY where it wasn't expected.
+
+=>    [address (models.TextField)]
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+NameError: name 'address' is not defined
+=>    [notes (models.TextField)]])
+  File "<input>", line 1, column 30
+
+     [notes (models.TextField)]])
+                               ^
+LexException: Ran into a RBRACKET where it wasn't expected.
+
+=> (defclass Customer [models.Model]
+...   [[name (models.CharField :max-length 255})]
+  File "<input>", line 2, column 43
+
+    [[name (models.CharField :max-length 255})]
+                                            ^
+LexException: Ran into a RCURLY where it wasn't expected.
+
+=>    [address (models.TextField)]
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+NameError: name 'address' is not defined
+=>
+=>
+=> (defclass Customer [models.Model]
+...   [[name (models.CharField :max-length 255})]
+  File "<input>", line 2, column 43
+
+    [[name (models.CharField :max-length 255})]
+                                            ^
+LexException: Ran into a RCURLY where it wasn't expected.
+
+=>    [address (models.TextField)]
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+NameError: name 'address' is not defined
+=>    [notes (models.TextField)]])
+  File "<input>", line 1, column 30
+
+     [notes (models.TextField)]])
+                               ^
+LexException: Ran into a RBRACKET where it wasn't expected.
+
+=>
+=> (defclass Customer [models.Model]
+...   [[name (models.CharField :max-length 255)]
+...    [address (models.TextField)]
+...    [notes (models.TextField)]])
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+NameError: name 'models' is not defined
+=> (defclass Customer [models.Model]
+...   [[name (models.CharField {:max-length 255})]
+...    [address (models.TextField)]
+...    [notes (models.TextField)]])
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+NameError: name 'models' is not defined
+=> (import [sh [cat grep wc]])
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+ImportError: No module named sh
+=>
+(Hy)ichisemasashi:~/workspace/Hy $ deactivate
+ichisemasashi:~/workspace/Hy $ cd
+ichisemasashi:~ $ pip install sh
+Downloading/unpacking sh
+  Downloading sh-1.11.tar.gz
+  Running setup.py (path:/tmp/pip_build_ubuntu/sh/setup.py) egg_info for package sh
+
+        Installing collected packages: sh
+  Running setup.py install for sh
+    error: [Errno 13] Permission denied: '/usr/local/lib/python2.7/dist-packages/sh.py'
+    Complete output from command /usr/bin/python -c "import setuptools, tokenize;__file__='/tmp/pip_build_ubuntu/sh/setup.py';exec(compile(getattr(tokenize, 'open', open)(__file__).read().replace('\r\n', '\n'), __file__, 'exec'))" install --record /tmp/pip-xqg0yp-record/install-record.txt --single-version-externally-managed --compile:
+    running install
+
+running build
+
+running build_py
+
+creating build
+
+creating build/lib.linux-x86_64-2.7
+
+copying sh.py -> build/lib.linux-x86_64-2.7
+
+running install_lib
+
+copying build/lib.linux-x86_64-2.7/sh.py -> /usr/local/lib/python2.7/dist-packages
+
+error: [Errno 13] Permission denied: '/usr/local/lib/python2.7/dist-packages/sh.py'
+
+----------------------------------------
+Cleaning up...
+Command /usr/bin/python -c "import setuptools, tokenize;__file__='/tmp/pip_build_ubuntu/sh/setup.py';exec(compile(getattr(tokenize, 'open', open)(__file__).read().replace('\r\n', '\n'), __file__, 'exec'))" install --record /tmp/pip-xqg0yp-record/install-record.txt --single-version-externally-managed --compile failed with error code 1 in /tmp/pip_build_ubuntu/sh
+Storing debug log for failure in /home/ubuntu/.pip/pip.log
+ichisemasashi:~ $ cd workspace/
+ichisemasashi:~/workspace $ ls
+2016-06-06-hy-tutu.vol.1.txt  Hy/        first_app/
+2016-06-09-hy-tut.vol.2.txt   README.md
+ichisemasashi:~/workspace $ cd Hy/
+ichisemasashi:~/workspace/Hy $ source bin/activate
+(Hy)ichisemasashi:~/workspace/Hy $ pip install sh
+Downloading/unpacking sh
+  Downloading sh-1.11.tar.gz
+  Running setup.py (path:/home/ubuntu/workspace/Hy/build/sh/setup.py) egg_info for package sh
+
+Installing collected packages: sh
+  Running setup.py install for sh
+
+Successfully installed sh
+Cleaning up...
+(Hy)ichisemasashi:~/workspace/Hy $ hy
+hy 0.11.1 using CPython(default) 2.7.6 on Linux
+=> (import [sh [cat grep wc]])
+=> (-> (cat "/usr/share/dict/words") (grep "-E" "^hy") (wc "-l"))
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+  File "/home/ubuntu/workspace/Hy/local/lib/python2.7/site-packages/sh.py", line 1021, in __call__
+    return RunningCommand(cmd, call_args, stdin, stdout, stderr)
+  File "/home/ubuntu/workspace/Hy/local/lib/python2.7/site-packages/sh.py", line 486, in __init__
+    self.wait()
+  File "/home/ubuntu/workspace/Hy/local/lib/python2.7/site-packages/sh.py", line 500, in wait
+    self.handle_command_exit_code(exit_code)
+  File "/home/ubuntu/workspace/Hy/local/lib/python2.7/site-packages/sh.py", line 516, in handle_command_exit_code
+    raise exc(self.ran, self.process.stdout, self.process.stderr)
+ErrorReturnCode_1:
+
+  RAN: '/bin/cat /usr/share/dict/words'
+
+  STDOUT:
+
+
+  STDERR:
+/bin/cat: /usr/share/dict/words: No such file or directory
+
+=> (-> (cat "../README.md") (grep "-E" "^hy") (wc "-l"))
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+  File "/home/ubuntu/workspace/Hy/local/lib/python2.7/site-packages/sh.py", line 1021, in __call__
+    return RunningCommand(cmd, call_args, stdin, stdout, stderr)
+  File "/home/ubuntu/workspace/Hy/local/lib/python2.7/site-packages/sh.py", line 486, in __init__
+    self.wait()
+  File "/home/ubuntu/workspace/Hy/local/lib/python2.7/site-packages/sh.py", line 500, in wait
+    self.handle_command_exit_code(exit_code)
+  File "/home/ubuntu/workspace/Hy/local/lib/python2.7/site-packages/sh.py", line 516, in handle_command_exit_code
+    raise exc(self.ran, self.process.stdout, self.process.stderr)
+ErrorReturnCode_1:
+
+  RAN: '/bin/grep -E ^hy'
+
+  STDOUT:
+
+
+  STDERR:
+
+=> (-> (cat "../README.md") (grep "-E" "^h") (wc "-l"))
+1
+
+=>
+```
