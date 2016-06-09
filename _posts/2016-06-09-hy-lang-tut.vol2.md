@@ -33,6 +33,7 @@ xrange(10)
 'xrange'って何だろう。
 
 「[Python 標準ライブラリ » 2. 組み込み関数](http://docs.python.jp/2/library/functions.html)」より
+
 > xrange(stop)
 >
 > xrange(start, stop[, step])
@@ -41,6 +42,7 @@ xrange(10)
 
 どうやら、遅延の効果があるみたいです。
 さらに、「[5.6.3. XRange 型](http://docs.python.jp/2/library/stdtypes.html#typesseq-xrange)」より
+
 >xrange 型は値の変更不能なシーケンスで、広範なループ処理に使われています。 xrange 型の利点は、 xrange オブジェクトは表現する値域の大きさにかかわらず常に同じ量のメモリしか占めないということです。はっきりしたパフォーマンス上の利点はありません。
 >
 >XRange オブジェクトは非常に限られた振る舞い、すなわち、インデクス検索、反復、 len() 関数のみをサポートしています。
@@ -106,6 +108,7 @@ The Cloud9 IDE team
 ```
 
 [pythonのコンテキストマネージャー](http://docs.python.jp/2/reference/datamodel.html#context-managers)について
+
 >コンテキストマネージャ(context manager) とは、 with 文の実行時にランタイムコンテキストを定義するオブジェクトです。コンテキストマネージャは、コードブロックを実行するために必要な入り口および出口の処理を扱います。コンテキストマネージャは通常、 with 文（ with 文 の章を参照）により起動されますが、これらのメソッドを直接呼び出すことで起動することもできます。
 
 「[リストの内包表記 (list comprehension)](http://docs.python.jp/2/reference/expressions.html#index-13)」の例
