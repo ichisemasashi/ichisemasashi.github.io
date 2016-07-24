@@ -9,8 +9,10 @@ categories: Clojure
 ## 開発環境の再整備
 
 [Cloud9](https://c9.io/)で古い環境がディスクFullになったので、新しい環境を用意します。
-- 「blank」指定でWorkSpaceを作成。
-- システムの確認
+
+### 「blank」指定でWorkSpaceを作成。
+
+### システムの確認
 
 
 ```
@@ -24,14 +26,14 @@ Filesystem      Size  Used Avail Use% Mounted on
 none            2.3G  4.2M  2.2G   1% /
 ```
 
-- コンソールのプロンプトを変更
+### コンソールのプロンプトを変更
 
 ```
 <ubuntu@ichisemasashi-clj-2016-07-3558530:~>
 $
 ```
 
-- openJDK 8をインストール
+### openJDK 8をインストール
 
 ```
 $ sudo add-apt-repository ppa:openjdk-r/ppa
@@ -39,7 +41,7 @@ $ sudo apt-get update
 $ sudo apt-get install openjdk-8-jdk
 ```
 
-- Leiningen のインストール
+### Leiningen のインストール
 
 ```
 $ mkdir ~/bin
@@ -57,9 +59,12 @@ from [tnoda-clojure](http://tnoda-clojure.tumblr.com/post/111489802935/getting-s
 
 from [Leiningen](http://leiningen.org/)
 
-- Javaのバージョン問題
+### Javaのバージョン問題発生
+
 openJDK 8をインストールしたのに、lein -vで表示されるJavaのバージョンとjavac -vで表示されるJavaのバージョンが違う。
+
 > マツバさんに助けてもらって、システムにインストールされている複数のJava内でのデフォルトを設定変更する。
+
 ```
 $ update-alternatives --display java
 $ java -version
@@ -70,7 +75,8 @@ $ lein -v
 Leiningen 2.6.1 on Java 1.8.0_91 OpenJDK 64-Bit Server VM
 ```
 
-## Clojureスタート
+### Clojureスタート
+
 ```
 $ lein repl
 Retrieving org/clojure/tools.nrepl/0.2.12/tools.nrepl-0.2.12.pom from central
@@ -104,7 +110,7 @@ nil
 user=>
 ```
 
-## Emacsのインストール
+### Emacsのインストール
 
 ```
 $ sudo apt-get install emacs24-nox emacs24-el
@@ -117,7 +123,7 @@ under the terms of the GNU General Public License.
 For more information about these matters, see the file named COPYING.
 ```
 
-## Emacs上でのClojure開発のためのパッケージ導入
+### Emacs上でのClojure開発のためのパッケージ導入
 
 - clojure mode
 - cider
@@ -125,12 +131,14 @@ For more information about these matters, see the file named COPYING.
 - rainbow delimiters
 - ddskk
 
-## 発表したこと。
-quilやgenerative designについて、以下のURLを紹介しながら喋りました。
-http://bugrammer.hateblo.jp/entry/2015/08/06/092010
-https://github.com/quil/quil
-https://medium.com/@thi.ng/workshop-report-generative-design-with-clojure-7d6d8ea9a6e8#.of9da7w48
-https://github.com/quil/quil-examples/tree/master/src/quil_sketches/gen_art
+### 発表したこと。
 
-http://quil.info/examples
-https://github.com/overtone/emacs-live
+quilやgenerative designについて、以下のURLを紹介しながら喋りました。
+
+http://bugrammer.hateblo.jp/entry/2015/08/06/092010<br>
+https://github.com/quil/quil<br>
+https://medium.com/@thi.ng/workshop-report-generative-design-with-clojure-7d6d8ea9a6e8#.of9da7w48<br>
+https://github.com/quil/quil-examples/tree/master/src/quil_sketches/gen_art<br>
+
+http://quil.info/examples<br>
+https://github.com/overtone/emacs-live<br>
