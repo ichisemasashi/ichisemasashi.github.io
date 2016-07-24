@@ -69,3 +69,68 @@ OpenJDK 64-Bit Server VM (build 25.91-b14, mixed mode)
 $ lein -v
 Leiningen 2.6.1 on Java 1.8.0_91 OpenJDK 64-Bit Server VM
 ```
+
+## Clojureスタート
+```
+$ lein repl
+Retrieving org/clojure/tools.nrepl/0.2.12/tools.nrepl-0.2.12.pom from central
+Retrieving org/clojure/pom.contrib/0.1.2/pom.contrib-0.1.2.pom from central
+Retrieving org/sonatype/oss/oss-parent/7/oss-parent-7.pom from central
+Retrieving clojure-complete/clojure-complete/0.2.4/clojure-complete-0.2.4.pom from clojars
+Retrieving org/clojure/clojure/1.8.0/clojure-1.8.0.pom from central
+Retrieving org/clojure/tools.nrepl/0.2.12/tools.nrepl-0.2.12.jar from central
+Retrieving org/clojure/clojure/1.8.0/clojure-1.8.0.jar from central
+Retrieving clojure-complete/clojure-complete/0.2.4/clojure-complete-0.2.4.jar from clojars
+nREPL server started on port 34360 on host 127.0.0.1 - nrepl://127.0.0.1:34360
+REPL-y 0.3.7, nREPL 0.2.12
+Clojure 1.8.0
+OpenJDK 64-Bit Server VM 1.8.0_91-8u91-b14-0ubuntu4~14.04-b14
+    Docs: (doc function-name-here)
+          (find-doc "part-of-name-here")
+  Source: (source function-name-here)
+ Javadoc: (javadoc java-object-or-class-here)
+    Exit: Control+D or (exit) or (quit)
+ Results: Stored in vars *1, *2, *3, an exception in *e
+
+user=> (pr "Hello world!")
+"Hello world!"nil
+user=> (doc doc)
+-------------------------
+clojure.repl/doc
+([name])
+Macro
+  Prints documentation for a var or special form given its name
+nil
+user=>
+```
+
+## Emacsのインストール
+
+```
+$ sudo apt-get install emacs24-nox emacs24-el
+$ sudo emacs -version
+GNU Emacs 24.3.1
+Copyright (C) 2013 Free Software Foundation, Inc.
+GNU Emacs comes with ABSOLUTELY NO WARRANTY.
+You may redistribute copies of Emacs
+under the terms of the GNU General Public License.
+For more information about these matters, see the file named COPYING.
+```
+
+## Emacs上でのClojure開発のためのパッケージ導入
+
+- clojure mode
+- cider
+- paredit
+- rainbow delimiters
+- ddskk
+
+## 発表したこと。
+quilやgenerative designについて、以下のURLを紹介しながら喋りました。
+http://bugrammer.hateblo.jp/entry/2015/08/06/092010
+https://github.com/quil/quil
+https://medium.com/@thi.ng/workshop-report-generative-design-with-clojure-7d6d8ea9a6e8#.of9da7w48
+https://github.com/quil/quil-examples/tree/master/src/quil_sketches/gen_art
+
+http://quil.info/examples
+https://github.com/overtone/emacs-live
