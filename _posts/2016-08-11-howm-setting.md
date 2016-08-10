@@ -8,7 +8,7 @@ categories: Emacs
 
 ## インストールは簡単
 
-[package-installでイケる](http://howm.osdn.jp/index-j.html)
+[```M-x package-install```でイケる](http://howm.osdn.jp/index-j.html)
 
 ## ```M-x homw-menu``` or ```C-c , ,```でメニューが出る。
 あとは何とかする。
