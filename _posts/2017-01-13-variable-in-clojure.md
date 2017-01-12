@@ -10,6 +10,7 @@ categories: Clojure
 ```
 user=> (def my-foo (atom 0))
 ```
+
 ## 変数に演算子を作用させる
 ```
 user=> (defn my-swap [] (swap! my-foo inc))
@@ -17,6 +18,7 @@ user=> (defn my-swap [] (swap! my-foo inc))
 user=> (my-swap)
 4
 ```
+
 ## 変数の値の入れ替え
 ```
 user=> (defn my-reset [n] (reset! my-foo n))
