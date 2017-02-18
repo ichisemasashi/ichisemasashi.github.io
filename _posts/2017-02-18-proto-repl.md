@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Proto REPL : AtomエディタでのClojure開発環境
+title: Proto REPL AtomエディタでのClojure開発環境
 date:   2017-02-18
 categories: Clojure
 ---
