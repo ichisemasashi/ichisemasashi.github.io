@@ -41,9 +41,15 @@ categories: Clojure
 
 
 ## 使い方
-
 ### ローカルにてClojure REPLを開始する
+基本的に[Leiningen](https://leiningen.org/)や[Boot](http://boot-clj.com/)を使うプロジェクトで動作します。
+
+1. ClojureのプロジェクトをAtomで開く。
+2. REPLの開始は、コマンド・パレットから`Proto REPL: Toggle`を選択する。キーボード・ショートカットからも起動できます。
+
 ### リモートのREPLに接続する
+Proto REPLは、nREPLを使用してリモートのClojureプロセスに接続できます。 コマンド・パレット（cmd-alt-p）を起動し、 `Proto REPL：Remote Nrepl Connection`を選択して、リモートREPLに接続します。 リモートnREPLサーバのホストとポートを入力すると、接続されます。 キーバインド`ctrl-alt-, y`も機能します。
+
 ### セルフホストなClojureScriptのREPLを開始する
 ### Leiningenプロジェクトの外での利用
 ### REPLの中で入力する
