@@ -80,17 +80,28 @@ Proto REPLは依然としてLeiningenプロジェクトの外でREPLを開始す
 
 ### REPLの中で入力する
 
-Code to be executed in the REPL can be entered by typing in the last entry area. Code can be executed by pressing shift+enter. The REPL maintains a history of executed commands that were entered in the REPL. The history can be navigated by using the up and down arrow keys after placing the cursor in the text entry area.
-
-REPLで実行されるコードは、最後の入力領域に入力することで入力できます。 Shift + Enterを押すとコードを実行できます。 REPLは、REPLに入力された実行されたコマンドの履歴を保持します。 履歴は、カーソルをテキスト入力エリアに置いた後に上下の矢印キーを使用してナビゲートすることができます。
+REPLで実行されるコードは、最後の入力領域に入力することで入力できます。 Shift + Enterを押すとコードを実行できます。 REPLは実行履歴を保持します。 履歴は、カーソルをテキスト入力エリアに置いた後に上下の矢印キーを使用してナビゲートすることができます。
 
 ### REPLにコードを送る
 
-Code can be sent to the REPL from within the REPL itself or any other open text editor. For example if you have some Clojure code in a Markdown file that can be sent to the REPL as well.
-
-コードは、REPL自体または他のオープンテキストエディタ内からREPLに送ることができます。 たとえば、マークアップファイルにREPLにも送信できるClojureコードがある場合などです。
+REPL自体または他のテキストエディタからコードをREPLに送ることができます。 たとえば、MarkdownファイルにREPLにも送信できるClojureコードがある場合などです。
 
 #### ブロックを送る
+
+Clojureコードのブロックは、かっこ`()`、中括弧`{}`（Clojureでマップリテラルを定義する）、または角括弧`[]`（Clojureでベクトルリテラルを定義する）で区切られたコードです。 現在のテキストエディタからブロックを送信するには、キーバインド`ctrl-alt-,b`（ctrlとカンマを一緒に押す、リリースしてからbを押す）を使用できます。 送信されるブロックは、カーソルの位置によって異なります。 カーソルは、複数のブロックの内側、ブロックの直後、またはブロックの前にネストされていてもよい。 ブロック発見のための論理は、以下の順序でブロックを探索する。
+
+1.  カーソルの直後のブロック。
+1.  カーソルの直前のブロック。
+1.  カーソルがネストされている最初のブロック。
+
+例：次の例は、Clojureコードのサンプルを示しています。 `|`はカーソル位置を示す。
+
+|Code	| Code sent to REPL|	Why?|
+|`|(foo 1 2)`| (foo 1 2)|ブロック直前のカーソル|
+|`(foo 1 2)|`| (foo 1 2)|ブロック直後のカーソル|
+|`(a (b |(c (foo 1 2))))`| (c (foo 1 2))| cブロック直前のカーソル|
+|`(a (b| (c (foo 1 2))))`| (b (c (foo 1 2)))|bブロック内のカーソル Cursor inside b block|
+
 #### Markdownブロック
 #### 選択したコードを送る
 ### 自動補完
