@@ -184,6 +184,15 @@ Clojureの関数またはletブロックの中に値があるシンボルがあ�
 
 [proto-repl/extending_proto_repl.md](https://github.com/jasongilman/proto-repl/blob/master/extending_proto_repl.md)
 
+詳細はリンク先を参照してください。
+
+- イベントにサブスクライブ
+- 新しいREPLコマンドを定義
+- 選択されたテキストの上でREPLコマンドを定義
+- コード実行の拡張
+- 例
+
+
 ## キーバインドとイベント
 
 |キーバインド|イベント|動作|
