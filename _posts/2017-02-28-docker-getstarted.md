@@ -140,7 +140,9 @@ Successfully built 7d9495d03763
 
 
 - **ステップ4** 新しい「docker-whale」を実行する
+
  1. ターミナルウィンドウまたはコマンドプロンプトで、ローカルにあるイメージを一覧表示する`docker images`入力します。
+
 ```
 $ docker images
 
@@ -150,8 +152,7 @@ docker/whalesay      latest       fb434121fc77      4 hours ago         247 MB
 hello-world          latest       91c95931e552      5 weeks ago         910 B
 ```
 
- 1. `docker run docker-whale`と入力して、新しいイメージを実行します。
-
+  2. `docker run docker-whale`と入力して、新しいイメージを実行します。
 ```
 $ docker run docker-whale
 
@@ -171,7 +172,32 @@ $ docker run docker-whale
           \____\______/
 ```
 
- 1. もういちど楽しむために、もう一度実行してください。
+  3. もういちど楽しむために、もう一度実行してください。
 
 # Docker Hubアカウントとリポジトリを作成する
+
+- **ステップ1** アカウントにサインアップする
+ブラウザで、[Docker Hubの登録ページ](https://hub.docker.com/register/)を開き、ユーザー登録をする。
+
+- **ステップ2** メールを確認してリポジトリを追加する
+ 1. 「ステップ1」で登録したメールに届く、確認メールからブラウザへのリンクを開く。
+ 1. 開いたページにて、「リポジトリの作成」を選択する。
+ 1. 「Visibility」が`Public`であることを確認する。
+ 1. `Create`を押してエントリを保存し、新しいリポジトリを作成します。
+
 # タグ付け、プッシュ、イメージのプル
+- **ステップ1** イメージにタグを付けてプッシュする
+ 1. ターミナルを開く。
+ 1. `docker images`を実行して、ローカルに保管されているイメージを一覧表示する。
+ 1. `docker-whale`イメージのイメージIDを探す。
+ 1. `docker tag`コマンドとイメージIDを使用して、イメージにタグを付けます。
+  ![image tag](https://docs.docker.com/engine/getstarted/tutimg/tagger.png)
+ 1. `docker images`コマンドを再度実行して、 `docker-whale`イメージにタグが付いていることを確認します。
+ 1. イメージをDocker Hubにプッシュする前に、 `docker login`コマンドを使用してログインする必要があります。 このコマンドではパラメータは使用されませんが、ユーザ名とパスワードの入力を求められます。
+ 1. `docker push`コマンドを使用して、タグ付きイメージをDocker Hubにpushます。
+ 1. 新しくプッシュされた画像を見るには、Docker HubのWebサイトに戻ってください。
+- **ステップ2** 新しいイメージを引き出します
+ 1. ターミナルを開く。
+ 1. `docker images`を使用して、ローカルにあるイメージを一覧表示します。
+ 1. `docker image remove`コマンドを使用してイメージを削除します。 IDまたは名前でイメージを参照できます。 彼らはIDを共有しているので、あなたがそれらの1つを保持したい場合は、別のIDを名前で参照する必要があります。
+ 1. `docker run`を使用すると、ローカルに存在しないイメージを自動的にダウンロード（プル）し、コンテナを作成して開始します。 
