@@ -30,7 +30,7 @@ $ sbcl --load quicklisp.lisp
 * (ql:add-to-init-file)
 ```
 
-### cl-cudaのインストール
+## cl-cudaのインストール
 ```
 $ sbcl
 * (ql:quickload :cl-cuda)
@@ -144,6 +144,8 @@ To load "cl-cuda":
 ```
 
 成功しました。
+
+## cl-cudaを動かしてみる
 cl-cuda/examples/vector-add.lispを実行してみる
 ```
 * (main)
@@ -180,12 +182,10 @@ restarts (invokable by number or by possibly-abbreviated name):
 [NVCC does not support Apple Clang version 8.x](https://github.com/arrayfire/arrayfire/issues/1384)
 - Appleの開発者向け[サイト](https://developer.apple.com/downloads/)にログイン
 - Xcode Command Line Tools 7.3をダウンロード&インストール
+- `sudo xcode-select --switch /Library/Developer/CommandLineTools`
+
+もう一度、cl-cudaを動かしてみる。
 ```
-sudo xcode-select --switch /Library/Developer/CommandLineTools
-
-```
-
-
 $ sbcl
 * (ql:quickload :cl-cuda)
 * (load "vector-add.lisp")
