@@ -91,6 +91,60 @@ Specterは、データ構造、特に入れ子や再帰的なデータを扱う�
 
 コンパイラはコードを抽象的な表現にコンパイルし、言語で可能な操作の種類ごとに明確なレコードタイプを持っています。すべての操作タイプには、統一された方法で公開しなければならないさまざまな属性があります。例えば、これらの属性の1つに「必要なフィールド」があります。これは、その操作のクロージャ内にあるフィールドで、仕事をするのに必要なものです。このポリモーフィックな動作を表現する典型的な方法は、次のようなインターフェースやプロトコルを使うことです。
 
+```
+(defprotocol NeededFields
+  (needed-fields [this]))
+```
+
+このアプローチの問題点は、クエリのみをカバーしていることです。コンパイラのいくつかのフェーズでは、抽象表現全体のフィールドを書き換えなければならず（例えば、シャドウイングを除去するために変数を一意にするなど）、このプロトコルはそれをサポートしていません。このプロトコルに(set-need-fields [this fields] )メソッドを追加することもできますが、固定数の入力フィールドを持つデータ型にはきれいに適合しません。また、ネストされた操作に対してもうまく構成できません。
+
+その代わりに、Specterの「プロトコルパス」機能を使って、様々なコンパイラタイプの共通属性を整理しています。ここでは、私たちのコンパイラの一部を紹介します。
+
+```Clojure
+(defprotocolpath NeededFields [])
+
+(defrecord+ OperationInput
+  [fields :- [(s/pred opvar?)]
+   apply? :- Boolean
+   ])
+
+(defrecord+ Invoke
+  [op    :- (s/cond-pre (s/pred opvar?) IFn RFn)
+   input :- OperationInput])
+
+(extend-protocolpath NeededFields Invoke
+  (multi-path [:op opvar?] [:input :fields ALL]))
+
+(defrecord+ VarAnnotation
+  [var :- (s/pred opvar?)
+   options :- {s/Keyword Object}])
+
+(extend-protocolpath NeededFields VarAnnotation
+  :var)
+
+(defrecord+ Producer
+  [producer :- (s/cond-pre (s/pred opvar?) PFn)])
+
+(extend-protocolpath NeededFields Producer
+  [:producer opvar?])
+```
+
+例えば、"Invoke"は、他の関数を呼び出すことを表す型です。:op フィールドには、静的な関数や、クロージャ内の関数への var 参照を指定することができます。他のパスは、関数呼び出しの引数として使用されるすべてのフィールドに移動します。
+
+この構造は非常に柔軟で、Specterと直接統合することで、クエリと同じように簡単に修正を表現することができます。例えば、次のような一連の操作で、必要なフィールドすべてに「-foo」というサフィックスを付加することができます。
+
+```Clojure
+(setval [ALL NeededFields NAME END] "-foo" ops)
+```
+
+一連の動作で使用されるユニークなフィールドのセットを求める場合、コードは
+
+```Clojure
+(set (select [ALL NeededFields] ops))
+```
+
+プロトコルパスは、データ自体を多義的にして、Specterの高度な能力と統合できるようにする方法です。これにより、他の方法では必要となる操作用のヘルパー関数の数が大幅に減り、コードベースがはるかに理解しやすくなります。
+
 
 ## Componentによる複雑なサブシステムの構築
 ## with-redefsを使ったテスト
