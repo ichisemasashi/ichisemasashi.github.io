@@ -2,7 +2,7 @@
 layout: post
 title: SpacemacsにGauche(SICP)を設定してみる
 date:   2021-06-30
-categories: Clojure 勝手翻訳
+categories: scheme SICP
 ---
 
 # SpacemacsにGauche(SICP)を設定してみる
