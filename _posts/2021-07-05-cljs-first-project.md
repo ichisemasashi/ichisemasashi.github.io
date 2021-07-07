@@ -74,3 +74,24 @@ cljs.user=>
 - `-m cljs.main`フラグは、ClojureScriptコンパイラを実行するための指定。
 - `--compile`フラグの後ろにはエントリーポイントの名前空間を指定する。
 - `--repl`フラグはWebサーバーの起動と、REPLの起動をする。
+
+## エイリアス
+
+deps.ednにエイリアスの設定を追加する。
+
+```
+% cat deps.edn 
+{:deps {org.clojure/clojurescript {:mvn/version "1.10.866"}}
+ :paths ["src"]
+ :aliases {:dev {:main-opts ["-m" "cljs.main"
+                             "--compile" "first-project.core"
+                             "--repl"]}}}
+```
+
+これで簡単に起動できる。
+
+```
+% clj -M:dev
+ClojureScript 1.10.866
+cljs.user=> 
+```
