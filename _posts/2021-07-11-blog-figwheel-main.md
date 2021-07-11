@@ -72,6 +72,23 @@ This text is printed from src/learn_cljs/weather.cljs. Go ahead and edit it and 
 # ただし、Figwheel-mainで変更できないものもある
 
 defonceで宣言されたもの(app-state)への更新は変更されない。
-```
+```Clojure
 (defonce app-state (atom {:text "Hello world!"}))
+```
+
+# Figwheel-mainはJavaScriptだけではない
+
+Figwhell-mainは、JavaScriptのコンパイル、送信、実行だけでなく、変更する可能性のあるスタイルシートのリロードも行う。
+
+たとえば、`resources/public/css/style.css`を以下のように変更すると、ファイルが保存されたときにブラウザにもその変更が伝わる。
+```CSS
+body {
+  background-color: #02a4ff;
+  color: #ffffff;
+}
+
+h1 {
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 300;
+}
 ```
