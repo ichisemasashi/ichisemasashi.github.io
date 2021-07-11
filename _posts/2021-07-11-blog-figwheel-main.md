@@ -7,6 +7,8 @@ categories: ClojureScript ブログ
 
 # Figwheel-mainでプロジェクトを起動
 
+参考：https://github.com/ichisemasashi/clojure_books/blob/master/Learn_ClojureScript/001_06.md
+
 基本的な設定は先日の設定。
 
 `clj-new`でプロジェクトを生成するときにFigwheelをテンプレートとして指定(`:template figwheel-main`)した。
