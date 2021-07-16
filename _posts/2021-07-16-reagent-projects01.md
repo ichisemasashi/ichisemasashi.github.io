@@ -112,5 +112,5 @@ src/my_reagent_project/sample.cljs
   (mount))
 ```
 
-![WebPage](../../../../../blob/master/_posts/img/2021-07-16-webpage.png)
+![WebPage](../../../../../_posts/img/2021-07-16-webpage.png)
 
