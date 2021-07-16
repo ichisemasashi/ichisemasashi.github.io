@@ -112,4 +112,5 @@ src/my_reagent_project/sample.cljs
   (mount))
 ```
 
-![WebPage](img/2021-07-16-webpage.png)
+![WebPage](https://github.com/ichisemasashi/ichisemasashi.github.io/blob/master/_posts/img/2021-07-16-webpage.png)
+
