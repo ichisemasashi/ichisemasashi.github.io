@@ -77,3 +77,79 @@ nil
 my-cljs-projects.analog-clock=> (.appendChild view-elm cvs)
 #object[HTMLCanvasElement [object HTMLCanvasElement]]
 ```
+
+# REPL上での作業をatomベースに書き換えてみる
+
+```
+;; div要素を取得
+my-cljs-projects.analog-clock=> (def view-elm (reagent/atom (gdom/getElement "app")))
+#'my-cljs-projects.analog-clock/view-elm
+;; イけるか確認
+my-cljs-projects.analog-clock=> (.-clientWidth @view-elm)
+817  ;; イける!!!
+;; 時計の半径を取得
+(defn- get-hankei [v]
+  (let [tate (.-clientHeight @v)
+        yoko (.-clientWidth @v)]
+    (/ (min tate yoko) 2)))
+my-cljs-projects.analog-clock=> (def hankei (get-hankei view-elm))
+#'my-cljs-projects.analog-clock/hankei
+;; div要素の縦横の短い方を取得
+my-cljs-projects.analog-clock=> (def mini-side (min (.-clientWidth @view-elm) (.-clientHeight @view-elm)))
+#'my-cljs-projects.analog-clock/mini-side
+;; キャンバスの作成
+my-cljs-projects.analog-clock=> (def cvs (reagent/atom (gdom/createElement "canvas")))
+#'my-cljs-projects.analog-clock/cvs
+;; キャンバスの描画サイズセット
+my-cljs-projects.analog-clock=> (.-width @cvs)
+300
+my-cljs-projects.analog-clock=> (.setAttribute @cvs "width" mini-side)
+nil
+my-cljs-projects.analog-clock=> (.-width @cvs)
+400
+my-cljs-projects.analog-clock=> (.setAttribute @cvs "height" mini-side)
+nil
+;; キャンバスの表示サイズセット
+my-cljs-projects.analog-clock=> (.-width (.-style @cvs))
+""
+my-cljs-projects.analog-clock=> (set! (.-width (.-style @cvs)) (str mini-side "px"))
+"400px"
+my-cljs-projects.analog-clock=> (.-width (.-style @cvs))
+"400px"
+(defn- set-cvs-style [cvs]
+  (let [style (.-style @cvs)
+        m (js/parseInt mini-side)
+        h (js/parseInt view-elm.clientHeight)
+        w (js/parseInt view-elm.clientWidth)]
+    (do ;; キャンバスの表示サイズセット
+        (set! (.-width style) (str m "px"))
+        (set! (.-height style) (str m "px"))
+        ;; キャンバスをdiv要素の中央にセット
+        (set! (.-top style)
+              (str (/ (- h m) 2) "px"))
+        (set! (.-left style)
+              (str (/ (- w m) 2) "px"))
+        ;; キャンバスにスタイルをセット
+        (set! (.-position style) "absolute")
+        (set! (.-boxSizing style) "border-box")
+        (set! (.-border style) "0")
+        (set! (.-padding style) "0 0 0 0")
+        (set! (.-margin style) "0 0 0 0"))))
+my-cljs-projects.analog-clock=> (set-cvs-style cvs)
+"0 0 0 0"
+;; キャンバスの描画コンテキストを取得
+my-cljs-projects.analog-clock=> (def context (reagent/atom (.getContext @cvs "2d")))
+#'my-cljs-projects.analog-clock/context
+my-cljs-projects.analog-clock=> @context
+#object[CanvasRenderingContext2D [object CanvasRenderingContext2D]]
+;; 描画の原点をキャンバスの中心にセット
+my-cljs-projects.analog-clock=> (.translate @context hankei hankei)
+nil
+;; キャンバスをHTMLに追加
+my-cljs-projects.analog-clock=> (.appendChild @view-elm @cvs)
+#object[HTMLCanvasElement [object HTMLCanvasElement]]
+```
+
+ブラウザにキャンバスの要素が追加されていたので良しとする。
+
+次は、これをソースファイルに記述して動作を確認してみる。
