@@ -3,3 +3,4 @@ _site
 .jekyll-metadata
 ._.DS_Store
 ._*
+tmp/*
