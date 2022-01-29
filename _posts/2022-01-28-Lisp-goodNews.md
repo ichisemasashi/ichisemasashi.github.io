@@ -1,69 +1,73 @@
+---
+layout: post
+title: Lisp: Good News, Bad News, How to Win Big
+date:   2022-1-28
+categories: Blog 勝手翻訳 Lisp
+---
 
-
-
-# Lisp: Good News, Bad News, How to Win Big
+# Lisp 良い知らせ、悪い知らせ、大勝利する方法
 
 Richard P. Gabriel Lucid, Inc
 
-## Abstract
+## 概要
 
-Lisp has done quite well over the last ten years: becoming nearly standardized, forming the basis of a commercial sector, achieving excellent performance, having good environments, able to deliver applications. Yet the Lisp community has failed to do as well as it could have. In this paper I look at the successes, the failures, and what to do next.
+Lispはこの10年間、ほぼ標準化され、商業部門の基礎を形成し、優れた性能を達成し、優れた環境を持ち、アプリケーションを提供できるなど、非常に順調であった。しかし、Lispコミュニティはそのような成果を上げることができなかった。この論文では、成功例、失敗例、そして次に何をすべきかを考察します。
 
-The Lisp world is in great shape: Ten years ago there was no standard Lisp; the most standard Lisp was InterLisp, which ran on PDP-10’s and Xerox Lisp machines (some said it ran on Vaxes, but I think they exaggerated); the second most standard Lisp was MacLisp, which ran only on PDP-10’s, but under the three most popular operating systems for that machine; the third most standard Lisp was Portable Standard Lisp, which ran on many machines, but very few people wanted to use it; the fourth most standard Lisp was Zetalisp, which ran on two varieties of Lisp machine; and the fifth most standard Lisp was Scheme, which ran on a few different kinds of machine, but very few people wanted to use it. By today’s standards, each of these had poor or just barely acceptable performance, nonexistent or just barely satisfactory environments, nonexistent or poor integration with other languages and software, poor portability, poor acceptance, and poor commercial prospects.
+Lispの世界は素晴らしい状態にあります。10年前には標準的なLispは存在せず、最も標準的なLispはInterLispで、PDP-10とXerox Lispマシン（Vaxesで動作したという人もいましたが、私はそれは誇張だと思います）、次に標準的なLispはMacLispで、PDP-10のマシンでのみ、そのマシンで最も人気のある3つのOSで動作していました。第4位はZetalispで、2種類のLispマシンで動作しました。第5位はSchemeで、数種類のマシンで動作しましたが、これを使おうとする人はほとんどいませんでした。いずれも今日の基準からすると、性能は低いかぎりぎりで、環境は存在しないかぎりぎりで、他の言語やソフトウェアとの統合は存在しないか不十分で、移植性は低く、受け入れられにくく、商業的な見込みも低いものでした。
 
-Today there is Common Lisp (CL), which runs on all major machines, all major operating systems, and virtually in every country. Common Lisp is about to be standardized by ANSI, has good performance, is surrounded with good environments, and has good integration with other languages and software.
+現在ではCommon Lisp (CL)があり、主要なマシン、主要なオペレーティングシステム、そして事実上すべての国で稼働している。Common LispはANSIによって標準化されようとしており、性能も良く、良い環境に囲まれており、他の言語やソフトウェアとの統合も良好である。
 
-But, as a business, Lisp is considered to be in ill health. There are persistent and sometimes true rumors about the abandonment of Lisp as a vehicle for delivery of practical applications.
+しかし、ビジネスとしてのLispは不健康だと言われています。実用的なアプリケーションを提供する手段としてのLispは見捨てられたという噂が根強く、時には真実味を帯びています。
 
-To some extent the problem is one of perception—there are simply better Lisp delivery solutions than are generally believed to exist and to a disturbing extent the problem is one of unplaced or misplaced resources, of projects not undertaken, and of implementation strategies not activated.
+この問題は、一般に信じられているよりも優れたLisp配信ソリューションが存在するという認識の問題であり、また、リソースの未配置や誤配備、プロジェクトの未実施、実装戦略の未活性化という問題の一部でもあります。
 
-Part of the problem stems from our very dear friends in the artificial intelligence (AI) business. AI has a number of good approaches to formalizing human knowledge and problem solving behavior. However, AI does not provide a panacea in any area of its applicability. Some early promoters of AI to the commercial world raised expectation levels too high. These expectations had to do with the effectiveness and deliverability of expert-system-based applications.
+この問題の一部は、人工知能（AI）ビジネスにおける我々の親愛なる友人から生じています。AIは、人間の知識や問題解決行動を形式化するための優れたアプローチを数多く持っています。しかし、AIは、その適用領域において万能ではありません。初期のAI推進者の中には、商業界への期待値を上げすぎた人もいました。これらの期待は、エキスパート・システム・ベースのアプリケーションの有効性と実現可能性に関係するものだった。
 
-When these expectations were not met, some looked for scapegoats, which frequently were the Lisp companies, particularly when it came to deliverability. Of course, if the AI companies had any notion about what the market would eventually expect from delivered AI software, they never shared it with any Lisp companies I know about. I believe the attitude of the AI companies was that the Lisp companies will do what they need to survive, so why share customer lists and information with them?
+この期待に応えられないと、スケープゴートを探したのですが、それがLispの会社であることが多く、特に実現性という点では、そのような会社が多かったのです。もちろん、もしAI企業が、最終的に市場がAIソフトウェアに何を期待するかについて何らかの考えを持っていたとしても、私が知る限り、Lisp企業とは共有されませんでした。Lisp社は生き残るために必要なことをするのだから、顧客リストや情報を共有する必要はない、というのがAI社の姿勢だったと思います。
 
-Another part of the problem is the relatively bad press Lisp got, sometimes from very respectable publications. I saw an article in Forbes (October 16, 1989) entitled Where Lisp Slipped, by Julie Pitta. However, the article was about Symbolics and its fortunes. The largest criticisms of Symbolics in the article are that Symbolics believed AI would take off and that Symbolics mistakenly pushed its view that proprietary hardware was the way to go for AI. There was nothing about Lisp in the article except the statement that it is a somewhat obscure programming language used extensively in artificial intelligence.
+もうひとつの問題は、Lispが比較的悪く報道されたことです。Forbes（1989年10月16日号）のJulie PittaのWhere Lisp Slippedというタイトルの記事を見たことがあります。しかし、その記事はSymbolicsとその運命に関するものでした。記事の中でSymbolics社に対する最大の批判は、Symbolics社がAIが普及すると信じていたこと、そしてSymbolics社がAIにはプロプライエタリなハードウェアが適しているという見解を誤って押し通したことです。Lispについては、人工知能の分野で広く使われているやや無名のプログラミング言語であるという記述以外、記事には何も書かれていない。
 
-It seems a pity for the Lisp business to take a bump partly because Julie thought she could make a cute title for her article out of the name“Lisp.”
+Lispという名前からかわいいタイトルをつけようとしたJulieのせいで、Lispのビジネスに一石を投じることになったのは残念なことです。
 
-But, there are some real successes for Lisp, some problems, and some ways out of those problems.
-
-
-## 1.0 Lisp’s Successes
-
-As I mentioned, Lisp is in better shape today than it ever has been. I want to review some Lisp success stories.
-
-## 1.1 Standardization
-
-A major success is that there is a standard Lisp—Common Lisp. Many observers today wish there were a simpler, smaller, cleaner Lisp that could be standardized, but the Lisp that we have today that is ready for standardization is Common Lisp. This isn’t to say that a better Lisp could not be standardized later, and certainly there should be. Furthermore, like any language, Common Lisp should be improved and changed as needs change.
-
-Common Lisp started as a grassroots effort in 1981 after an ARPA-sponsored meeting held at SRI to determine the future of Lisp. At that time there were a number of Lisps in the US being defined and implemented by former MIT folks: Greenblatt (LMI), Moon and Weinreb (Symbolics), Fahlman and Steele (CMU), White (MIT), and Gabriel and Steele (LLNL). The core of the Common Lisp committee came from this group. That core was Fahlman, Gabriel, Moon, Steele, and Weinreb, and Common Lisp was a coalescence of the Lisps these people cared about.
-
-There were other Lisps that could have blended into Common Lisp, but they were not so clearly in the MacLisp tradition, and their proponents declined to actively participate in the effort because they predicted success for their own dialects over any common lisp that was defined by the grassroots effort. Among these Lisps were Scheme, Interlisp, Franz Lisp, Portable Standard Lisp, and Lisp370.
-
-And outside the US there were major Lisp efforts, including Cambridge Lisp and Le-Lisp. The humble US grassroots effort did not seek membership from outside the US, and one can safely regard that as a mistake. Frankly, it never occurred to the Common Lisp group that this purely American effort would be of interest outside the US, because very few of the group saw a future in AI that would extend the needs for a standard Lisp beyond North America.
-
-Common Lisp was defined and a book published in 1984 called Common Lisp: the Language (CLtL). And several companies sprang up to put Common Lisp on stock hardware to compete against the Lisp machine companies. Within four years, virtually every major computer company had a Common Lisp that it had either implemented itself or private-labeled from a Common Lisp company.
-
-In 1986, X3J13 was formed to produce an ANSI version of Common Lisp. By then it was apparent that there were significant changes required to Common Lisp to clean up ambiguities and omissions, to add a condition system, and to define object-oriented extensions.
-
-After several years it became clear that the process of standardization was not simple, even given a mature language with a good definition. The specification of the Common Lisp Object System (CLOS) alone took nearly two years and seven of the most talented members of X3J13.
-
-It also became apparent that the interest in international Lisp standardization was growing. But there was no heir apparent to Common Lisp. Critics of Common Lisp, especially those outside the US, focused on Common Lisp’s failures as a practical delivery vehicle.
-
-In 1988, an international working group for the standardization of Lisp was formed. That group is called WG16. Two things are absolutely clear: The near-term standard Lisp is Common Lisp; a longer-term standard that goes beyond Common Lisp is desirable.
-
-In 1988, the IEEE Scheme working group was formed to produce an IEEE and possibly an ANSI standard for Scheme. This group completed its work in 1990, and the relatively small and clean Scheme is a standard.
-
-Currently, X3J13 is less than a year away from a draft standard for ANSI Common Lisp; WG16 is stalled because of international bickering; Scheme has been standardized by IEEE, but it is of limited commercial interest.
-
-Common Lisp is in use internationally, and serves at least as a de facto standard until the always contentious Lisp community agrees to work together.
+しかし、Lispの成功例もあれば、問題点もあり、それを解決する方法もある。
 
 
-## 1.2 Good Performance
+## 1.0 Lispの成功
 
-Common Lisp performs well. Most current implementations use modern compiler technology, in contrast to older Lisps, which used very primitive compiler techniques, even for the time. In terms of performance, anyone using a Common Lisp today on almost any computer can expect better performance than could be obtained on single-user PDP-10’s or on single-user Lisp machines of mid1980’s vintage. Many Common Lisp implementations have multitasking and non-intrusive garbage collection—both regarded as impossible features on stock hardware ten years ago.
+先に述べたように、Lispは現在、かつてないほど良い状態にある。ここで、Lispの成功例をいくつか振り返ってみたいと思います。
 
-In fact, Common Lisp performs well on benchmarks compared to C. The following table shows the ratio of Lisp time and code size to C time and code size for three benchmarks:
+## 1.1 標準化
+
+大きな成功は、Common Lispという標準的なLispが存在することである。もっとシンプルで、小さくて、きれいなLispがあればと思う人は多いでしょうが、現在あるLispで標準化が可能なのはCommon Lispです。しかし、より良いLispが標準化されないとは言いませんし、そうすべきです。また、Common Lispは他の言語と同様、ニーズの変化に応じて改良・変更されるべきものです。
+
+Common Lispは1981年にSRIで開かれたARPA主催のLispの将来を決める会議の後に、草の根的な活動として始まりました。当時、米国では元MITの人たちが定義・実装しているLispがいくつもありました。Greenblatt (LMI), Moon and Weinreb (Symbolics), Fahlman and Steele (CMU), White (MIT), and Gabriel and Steele (LLNL)であった。Common Lisp委員会の中核はこのグループから生まれた。そのコアとはFahlman、Gabriel、Moon、Steele、Weinrebで、Common Lispはこの人たちが大事にしたLispが合体したものである。
+
+他にもCommon Lispに融合しうるLispsはありましたが、それらはMacLispの伝統を明確に受け継いでおらず、また、それらの支持者は、草の根の努力で定義されたCommon Lispよりも自分たちの方言が成功すると予測し、積極的に参加することを断念しました。このようなLispには、Scheme、Interlisp、Franz Lisp、Portable Standard Lisp、Lisp370などがある。
+
+また、米国以外でもCambridge LispやLe-Lispなどの大規模なLispの取り組みがあった。米国の草の根的な活動は、米国外からの参加者を求めなかったのですが、これは間違いだったと考えてよいでしょう。なぜなら、Common Lispグループの中には、標準Lispの必要性を北米以外に広げるようなAIの将来を見据えた人はほとんどいなかったからです。
+
+Common Lispが定義され、1984年にCommon Lisp: the Language (CLtL)という本が出版された。また、Lispマシンメーカーに対抗してCommon Lispを純正ハードウェアに搭載する会社がいくつか誕生した。4年後には、主要なコンピュータ会社は、自社で実装したCommon Lispか、Common Lispの会社からプライベートラベルを受けたCommon Lispを持つようになった。
+
+1986年、ANSI版のCommon Lispを作成するためにX3J13が設立された。それまでに、Common Lispの曖昧さや抜けをなくし、条件システムを追加し、オブジェクト指向の拡張を定義するために、大きな変更が必要であることが明らかにされていた。
+
+数年後、成熟した言語と優れた定義があっても、標準化のプロセスは単純でないことが明らかになった。Common Lisp Object System (CLOS)の仕様策定だけでも2年近くかかり、X3J13の最も優秀なメンバー7人が参加した。
+
+また、Lispの国際標準化に対する関心が高まっていることも明らかになった。しかし、Common Lispの後継者はいなかった。Common Lispの批評家、特に米国外の批評家は、Common Lispが実用的な提供手段としては失敗していることに着目していた。
+
+1988年、Lispの標準化のための国際的なワーキンググループが結成された。そのグループはWG16と呼ばれている。近い将来の標準LispはCommon Lispであること、Common Lispを超える長期的な標準が望まれること、の2点が絶対的に明確であった。
+
+1988年には、SchemeのIEEE標準、場合によってはANSI標準を作成するために、IEEE Scheme作業部会が結成されました。このグループは1990年に作業を完了し、比較的小さくてきれいなSchemeが標準となりました。
+
+現在、X3J13はANSI Common Lispの標準化ドラフトまであと1年弱、WG16は国際的ないざこざで停滞、SchemeはIEEEで標準化されましたが、商業的な関心は低いようです。
+
+Common Lispは国際的に使われており、常に論争の絶えないLispコミュニティが協力し合うまで、少なくとも事実上の標準として機能しています。
+
+
+## 1.2 良好なパフォーマンス
+
+Common Lispは性能が良い。現在の実装の多くは最新のコンパイラ技術を利用しています。これに対し、古いLispは当時としては非常に原始的なコンパイラ技術を使っています。性能面では、現在のCommon Lispはほとんどのコンピュータで、PDP-10や1980年代中頃のシングルユーザマシンよりも高い性能が期待できます。Common Lispの実装の多くは、マルチタスクと非侵入型ガベージコレクションを備えていますが、いずれも10年前のハードウェアでは不可能と考えられていた機能です。
+
+以下の表は、3つのベンチマークにおけるLispの実行時間とコードサイズのCの実行時間とコードサイズに対する比を示しています。
 
 | Benchmark | CPU Time | Code Size | 
 |:-|:-|:--|
@@ -71,62 +75,62 @@ In fact, Common Lisp performs well on benchmarks compared to C. The following ta
 |Traverse| 0.98 | 1.35 |
 |Lexer | 1.07 | 1.48 |
 
-`Tak` is a Gabriel benchmark that measures function calling and fixnum arithmetic. `Traverse` is a Gabriel benchmark that measures structure creation and access. `Lexer` is the tokenizer of a C compiler and measures dispatching and character manipulation.
+`Tak` はガブリエルベンチマークで、関数呼び出しと固定長演算を測定する。`Traverse` はガブリエルのベンチマークで、構造体の生成とアクセスを計測する。`Lexer` は C コンパイラのトークナイザであり、ディスパッチと文字操作を測定する。
 
-These benchmarks were run on a Sun 3 in 1987 using the standard Sun C compiler using full optimization. The Lisp was not running a non-intrusive garbage collector.
-
-
-## 1.3 Good Environments
-
-It is arguable that modern programming environments come from the Lisp and AI tradition. The first bit-mapped terminals (Stanford/MIT), the mouse pointing device (SRI), full-screen text editors (Stanford/MIT), and windowed environments (Xerox PARC) all came from laboratories engaged in AI research. Even today one can argue that the Symbolics programming environment represents the state of the art.
-
-It is also arguable that the following development environment features originated in the Lisp world:
-
- incremental compilation and loading 
- symbolic debuggers
-data inspectors
-source code level single stepping
-help on builtin operators 
-window-based debugging 
-symbolic stack backtraces
-structure editors
+これらのベンチマークは 1987 年に Sun 3 上で標準的な Sun C コンパイラを用いて完全最適化で実行されたものです。Lispは非侵入型のガベージコレクタを動作させていない。
 
 
-Today’s Lisp environments are equal to the very best Lisp machine environments in the 1970’s. Windowing, fancy editing, and good debugging are all commonplace. In some Lisp systems, significant attention has been paid to the software lifecycle through the use of source control facilities, automatic cross-referencing, and automatic testing.
+## 1.3 良い環境
 
-## 1.4 Good Integration
+現代のプログラミング環境は、LispとAIの伝統に由来していることは間違いない。最初のビットマップ端末（Stanford/MIT）、マウスポインティングデバイス（SRI）、フルスクリーンテキストエディタ（Stanford/MIT）、ウィンドウ環境（Xerox PARC）はすべてAI研究に従事していた研究室から生まれたものである。現在でも、プログラミング環境「Symbolics」が最先端であると言うことができる。
 
-Today Lisp code can coexist with C, Pascal, Fortran, etc. These languages can be invoked from Lisp and in general, these languages can then re-invoke Lisp. Such interfaces allow the programmer to pass Lisp data to foreign code, to pass foreign data to Lisp code, to manipulate foreign data from Lisp code, to manipulate Lisp data from foreign code, to dynamically load foreign programs, and to freely mix foreign and Lisp functions.
+また、以下のような開発環境の特徴は、Lispの世界から生まれたと言える。
 
-The facilities for this functionality are quite extensive and provide a means for mixing several different languages at once.
-
-## 1.5 Object-oriented Programming
-
-Lisp has the most powerful, comprehensive, and pervasively object-oriented extensions of any language. CLOS embodies features not found in any other object-oriented language. These include the following:
-
-multiple inheritance
-generic functions including multi-methods • first-class classes
-first-class generic functions
-metaclasses
-method combination
-initialization protocols
-metaobject protocol
-integration with Lisp types
+- インクリメンタルコンパイルとロード 
+- シンボリックデバッガ
+- データインスペクタ
+- ソースコードレベルでのシングルステップ
+- 組込み演算子に関するヘルプ 
+- ウィンドウベースデバッギング 
+- シンボリックスタックバックトレース
+- 構造体エディタ
 
 
-It is likely that Common Lisp (with CLOS) will be the first standardized object-oriented programming language.
+現在のLisp環境は、1970年代のLispマシン環境の最高峰に匹敵するものです。ウィンドウウィングや派手な編集、優れたデバッギングが当たり前になっている。また、ソース管理機能、自動相互参照機能、自動テスト機能など、ソフトウェアのライフサイクルに配慮したLispシステムもあります。
 
-## 1.6 Delivery
+## 1.4 優れた統合性
+
+現在、LispのコードはC、Pascal、Fortran等と共存することができます。これらの言語はLispから呼び出すことができ、一般に、これらの言語はLispを再呼び出すことができます。このようなインタフェースにより、プログラマはLispのデータを外部コードに渡したり、外部データをLispコードに渡したり、Lispコードから外部データを操作したり、外部コードからLispデータを操作したり、外部プログラムを動的にロードしたり、外部関数とLisp関数を自由に混在させたりすることができるようになります。
+
+この機能のための設備は非常に充実しており、複数の異なる言語を一度に混在させる手段を提供する。
+
+## 1.5 オブジェクト指向プログラミング
+
+Lispは、あらゆる言語の中で最も強力で、包括的、かつ広範なオブジェクト指向の拡張機能を備えています。CLOSは、他のオブジェクト指向言語にはない機能を備えている。これには以下のようなものがある。
+
+- 多重継承
+- マルチメソッドを含む汎用関数 - 第一級クラス
+- ファーストクラスジェネリック関数
+- メタクラス
+- メソッドの組み合わせ
+- 初期化プロトコル
+- メタオブジェクトプロトコル
+- Lisp型との統合
 
 
-It is possible to deliver applications written in Lisp. As we shall see, the currently available tools are good but are not yet ideal. The remainder of this section is about a successful approach to delivery taken by Lucid.
+オブジェクト指向プログラミング言語として標準化されたのは、（CLOSを含む）Common Lispが最初と思われる。
 
-The Lucid Delivery Tool Kit comprises three tool sets: Performance Monitoring, Reorganization, and Treeshaking.
-
-### 1.6.1 Performance Monitoring Tools
+## 1.6 配送について
 
 
-The Performance Monitoring tools provide information about dynamic behavior of programs. Because storage allocation and deallocation is often an important factor in program performance, the tools also provide information about storage allocation. While there is nothing novel about these tools, their use is almost always critical to achieving good program performance.
+Lispで書かれたアプリケーションを配信することは可能です。これから述べるように、現在利用可能なツールは良いものですが、まだ理想的なものではありません。本節では、Lucidで成功した配信方法について説明する。
+
+Lucidデリバリーツールキットは3つのツールセットで構成されています。パフォーマンス・モニタリング、リオーガナイゼーション、そしてツリーシェーキングです。
+
+### 1.6.1 パフォーマンス監視ツール
+
+
+パフォーマンス・モニタリング・ツールは、プログラムの動的な動作に関する情報を提供します。ストレージの割り当てと解放は、しばしばプログラム性能の重要な要素であるため、ツールはストレージの割り当てに関する情報も提供します。これらのツールには目新しいものはありませんが、これらのツールの使用は、プログラム性能を良好にするために、ほとんどの場合、非常に重要です。
 
 ### 1.6.2 The Reorganizer
 
