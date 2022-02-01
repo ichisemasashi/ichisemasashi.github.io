@@ -132,39 +132,41 @@ Lucidデリバリーツールキットは3つのツールセットで構成さ�
 
 パフォーマンス・モニタリング・ツールは、プログラムの動的な動作に関する情報を提供します。ストレージの割り当てと解放は、しばしばプログラム性能の重要な要素であるため、ツールはストレージの割り当てに関する情報も提供します。これらのツールには目新しいものはありませんが、これらのツールの使用は、プログラム性能を良好にするために、ほとんどの場合、非常に重要です。
 
-### 1.6.2 The Reorganizer
+### 1.6.2 リオーガナイザー
 
-For programs whose working set exceeds available real memory, the time spent inside virtual memory system-code can greatly exceed the time spent in user-code. For example, let us assume that we have a program which does nothing but memory-reference instructions randomly throughout its working set. If we denote by WS the working set of a program, by Mem the real memory available to that program, and by Utime the time spent in actual user-code, and by Total the total run time for the program, a simple analysis gives the following equations for Total:
+ワーキング・セットが利用可能な実メモリを超えるプログラムでは、仮想メモリ・システム・コードに費やす時間がユーザ・コードに費やす時間を大きく上回る可能性があります。例えば、作業セット全体でランダムにメモリを参照する命令しか実行しないプログラムがあるとします。プログラムのワーキング・セットを`WS`、そのプログラムが利用できる実メモリを`Mem`、実際のユーザ・コードに費やした時間を`Utime`、プログラムの総実行時間を`Total`とすると、簡単な解析によりTotalは以下の式で表されます。
 
+```
 Total = Utime, for WS ≤ Mem
 Total = Utime+Pft⋅(WS–Mem)⁄(WS),for WS>Mem
+```
 
-Pft is the page-fault-time—that is, amount of time it takes to handle a page-fault. On typical machines this number is usually 1,000 to 10,000 times as long as it takes to execute a memory-reference instruction that doesn’t cause a page-fault.(*1)
+`Pft`はページフォルト時間、つまり、ページフォルトを処理するのにかかる時間のことです。一般的なマシンでは、この数値は通常、ページ障害を起こさないメモリ参照命令の実行にかかる時間の1,000倍から10,000倍である。(*1)
 
-Because a Lisp program can often have a working set exceeding available memory, tools that help reduce working set can lead to very large performance improvements. In some cases, the working set can be reduced by lessening reliance on dynamically allocated objects—that is, by lessening CONSing of the program. However, in instances where the working set size is due primarily to references to permanent objects, other techniques are needed.
+Lispプログラムでは、作業セットが使用可能なメモリを超えることがよくあるため、作業セットを減らすためのツールは非常に大きな性能向上につながる可能性がある。作業セットは、動的に割り当てられるオブジェクトへの依存を減らすこと、つまりプログラムのCONSingを減らすことで削減できる場合がある。しかし、作業セットのサイズが主に永続的なオブジェクトへの参照に起因する場合は、他のテクニックが必要になります。
 
-The approach taken in the Lucid Delivery Tool Kitis to reorganize the permanent objects in the Lisp address space so as to place objects that have similar patterns of reference at nearby addresses. (In particular, this means at least segregating the objects that are referenced by a program from those that are not.)
+Lucid Delivery Tool Kitでは、Lispアドレス空間内のパーマネントオブジェクトを再編成し、類似の参照パターンを持つオブジェクトを近傍のアドレスに配置するアプローチをとっている。(特に、プログラムから参照されるオブジェクトとそうでないオブジェクトを少なくとも分離することを意味する)。
 
-### 1.6.3 The Treeshaker
+### 1.6.3 ツリーシェイカー
 
-Most Lisp development systems, including Lucid’s, provide all the resources of the Lisp system by default, and this in turn leads to a style of development in which the programmer makes use of whatever tool happens to be most convenient.(*2) Because much of the basic Lisp system (or any development system built on top of the basic Lisp system) will generally be unused by a given application, it is very worthwhile to have a tool for excising these unused parts. This tool is called the Treeshaker.(*3)
+Lucidを含む多くのLisp開発システムでは、Lispシステムの全ての資源がデフォルトで提供されているため、プログラマは都合の良いツールを使って開発することになります(*2)。 Lisp基本システム（あるいはLisp基本システムの上に構築された開発システム）の多くは、一般にアプリケーションによって使用されないため、これらの未使用部分を取り除くためのツールがあると非常に役に立ちます。このツールをTreeshakerと呼ぶ。(*3)
 
-Treeshaker execution occurs in three phases: walking, testing and writing. In the walking phase, the Treeshaker accumulates a set of objects that need to be included in the saved image. After making this set, the treeshaker runs a test of the application to check that all objects which are used in a typical run have been included. The writing phase then generates an executable image which will run the application.
+Treeshakerの実行は、ウォーキング、テスト、ライティングの3つのフェーズで行われます。ウォーキングフェーズでは、Treeshakerは保存画像に含める必要のあるオブジェクトのセットを蓄積する。このセットを作成した後、ツリーシェイカーはアプリケーションのテストを実行し、典型的な実行で使用されるすべてのオブジェクトが含まれていることを確認する。その後、書き込みフェーズでは、アプリケーションを実行するための実行可能なイメージを生成する。
 
-To a first approximation, the walk phase is just a matter of computing the connected component of the Lisp image (treated as a directed graph in the obvious way) generated by the application’s toplevel function. However, because of the way that Lisp objects are generally connected this usually includes almost the entire Lisp image including the unused subsystems. Therefore the treeshaker uses several techniques to find connections between objects that do not actually need to be followed in the walk.
+ウォークフェーズは、アプリケーションのトップレベル関数が生成する Lispイメージの連結成分(有向グラフとして扱われる)を計算することで、一応の解決を見ることができる。しかし、Lispオブジェクトは一般に連結されるため、通常、未使用のサブシステムを含むLispイメージのほぼ全体が含まれる。そこでツリーシェイカーは、実際に歩く必要のないオブジェクト間の 接続を見つけるために、いくつかのテクニックを用います。
 
 
-### 1.6.4 Results
+### 1.6.4 成果
 
-The first example is a simple expert system that helps align magnetic resonance imaging equipment. The results are for the original program, and a reorganized and treeshaken version running two different tests, a short and a long test. WS is the working set in megabytes. The time is expressed as hours:minutes.
+最初の例は、磁気共鳴イメージング装置の位置合わせを支援する簡単なエキスパートシステムである。結果は、オリジナルのプログラムと、再編成されトレースされたバージョンで、短いテストと長いテストの2種類のテストを実行したものである。WSはメガバイト単位の作業セットである。時間は時間：分で表される。
 
 MRI Alignment Program
 |  |Short|Long|Size|WS|
 |:-|:---|:----|:---|:--|
-|Original|2:22|*:**|4.45mb|3.50mb|
+|Original|2:22|\*:\*\*|4.45mb|3.50mb|
 |Final|0:42|4:11|1.65mb|2.25mb|
 
-The second example is Reduce, a symbolic algebra system. The three programs are the original, a treeshaken version, and a treeshaken and reorganized version. The CPU column is the time in seconds the CPU spent executing user code—that is, all other time is page fault handling time.
+2つ目の例は、記号代数システムであるReduceである。3つのプログラムは、オリジナル、トレシャク版、トレシャクと再編成版です。CPUの列は、CPUがユーザーコードの実行に費やした時間（秒）で、それ以外の時間はすべてページフォルト処理時間です。
 
 Reduce Computer Algebra System
 |   |Size|Time|Faults|CPU|
@@ -173,15 +175,15 @@ Reduce Computer Algebra System
 |Shaken|2.78mb|3:25|680|52.1|
 |Reorganized|2.78mb|1:50|220|50.1|
 
-## 2.0 Lisp’s Apparent Failures
+## 2.0 Lispの見かけ倒し
 
-Too many teardrops for one heart to be crying.
+涙の数が多すぎて、一つの心では泣けない。
 
-Too many teardrops for one heart to carry on.
+一つの心を貫くには、あまりにも多くの涙のしずくがある。
 
-You’re way on top now, since you left me,
+君が僕を捨ててから、君はもうずっと上の空だ。
 
-Always laughing, way down at me.
+いつも笑っている、私を見下すように。
 
 **? & The Mysterians**
 
