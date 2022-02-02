@@ -187,37 +187,37 @@ Reduce Computer Algebra System
 
 **? & The Mysterians**
 
-This happy story, though, has a sad interlude, an interlude that might be attributed to the failure of AI to soar, but which probably has some other grains of truth that we must heed. The key problem with Lisp today stems from the tension between two opposing software philosophies. The two philosophies are called The Right Thing and Worse is Better.
+この幸せな物語には、悲しい幕間がある。その幕間とは、AIが飛躍できなかったことに起因するかもしれないが、おそらく私たちが耳を傾けなければならない別の真実の粒があるのだろう。今日のLispの重要な問題は、2つの相反するソフトウェア哲学の間の緊張関係から生じています。その2つの哲学とは、「正しいこと」と「悪いことは良いこと」と呼ばれるものです。
 
-## 2.1 The Rise of Worse is Better
-I and just about every designer of Common Lisp and CLOS has had extreme exposure to the MIT/Stanford style of design. The essence of this style can be captured by the phrase **the right thing**. To such a designer it is important to get all of the following characteristics right:
+## 2.1 ワース・イズ・ベターの台頭
 
-Simplicity—the design must be simple, both in implementation and interface. It is more important for the interface to be simple than the implementation.
-Correctness—the design must be correct in all observable aspects. Incorrectness is simply not allowed.
-Consistency—the design must not be inconsistent. A design is allowed to be slightly less simple and less complete to avoid inconsistency. Consistency is as important as correctness.
-Completeness—the design must cover as many important situations as is practical. All reasonably expected cases must be covered. Simplicity is not allowed to overly reduce completeness.
+私やCommon LispやCLOSの設計者は、MIT/Stanford流のデザインに極端に触れてきたと思います。このスタイルのエッセンスは、**the right thing**というフレーズで捉えることができます。このような設計者にとって重要なことは、以下の特徴をすべて正しく把握することである。
 
-I believe most people would agree that these are good characteristics. I will call the use of this philosophy of design the MIT approach. Common Lisp (with CLOS) and Scheme represent the MIT approach to design and implementation.
+シンプルであること-デザインは実装もインターフェースもシンプルでなければならない。インターフェイスがシンプルであることは、実装よりも重要である。
+- 正しさ-設計は観察可能なすべての側面において正しくなければならない。不正確な設計は許されません。
+- 一貫性-設計に矛盾があってはならない。矛盾を避けるために、設計が若干単純でなく、完全でなくてもよい。一貫性は正しさと同じくらい重要です。
+- 完全性-設計は、現実的な範囲でできるだけ多くの重要な状況をカバーしなければなりません。合理的に予想されるすべてのケースをカバーしなければならない。単純化によって完全性を過度に低下させることは許されない。
 
-The worse-is-better philosophy is only slightly different:
+これらが良い特性であることは、ほとんどの人が同意してくれると思います。このような設計哲学を用いることを、私はMITアプローチと呼ぶことにします。Common Lisp (CLOS付き)とSchemeは、MITアプローチの設計と実装を代表するものです。
 
-Simplicity—the design must be simple, both in implementation and interface. It is more important for the implementation to be simple than the interface.
-Simplicity is the most important consideration in a design.
-Correctness—the design must be correct in all observable aspects. It is slightly better to be simple than correct.
-Consistency—the design must not be overly inconsistent. Consistency can be sacrificed for simplicity in some cases, but it is better to drop those parts of the design that deal with less common circumstances than to introduce either implementational complexity or inconsistency.
-Completeness—the design must cover as many important situations as is practical. All reasonably expected cases should be covered. Completeness can be sacrificed in favor of any other quality. In fact, completeness must sacrificed whenever implementation simplicity is jeopardized. Consistency can be sacrificed to achieve completeness if simplicity is retained; especially worthless is consistency of interface.
+worse-is-betterの思想はほんの少し違う。
 
-Early Unix and C are examples of the use of this school of design, and I will call the use of this design strategy the New Jersey approach I have intentionally caricatured the worse-is-better philosophy to convince you that it is obviously a bad philosophy and that the New Jersey approach is a bad approach.
+- シンプルさ-実装とインターフェースの両方がシンプルであることが必要です。インターフェイスよりも実装がシンプルであることがより重要である。シンプルであることは、設計において最も重要な考慮事項である。
+- 正しさ-設計は、観察可能なすべての側面において正しくなければならない。正しいことより単純であることの方が若干良い。
+- 一貫性-設計は過度に矛盾してはならない。場合によっては一貫性を犠牲にして単純化することもできますが、実装の複雑さや一貫性の欠如を招くくらいなら、あまり一般的ではない状況に対処する部分を削除する方がよいでしょう。
+- 完全性-設計は、現実的な範囲でできるだけ多くの重要な状況をカバーしなければならない。合理的に予想されるすべてのケースをカバーする必要があります。完全性は、他のどの品質よりも犠牲にすることができます。実際、実装の単純さが損なわれる場合は、完全性を犠牲にしなければならない。特にインターフェイスの一貫性は価値がない。
 
-However, I believe that worse-is-better, even in its strawman form, has better survival characteristics than the-right-thing, and that the New Jersey approach when used for software is a better approach than the MIT approach.
+初期のUnixやCはこの流派の設計の例で、私はこの設計戦略の使用をニュージャージー・アプローチと呼ぶことにします。私は、明らかに悪い哲学であり、ニュージャージー・アプローチが悪いアプローチであることを納得させるために、意図的に「悪いことは良いこと」という哲学をカリカチュアライズしました。
 
-Let me start out by retelling a story that shows that the MIT/New-Jersey distinction is valid and that proponents of each philosophy actually believe their philosophy is better.
+しかし、私は、borse-is-betterは、たとえ藁人形であっても、the-right-thingよりも生存特性が優れており、ソフトウェアに使用する場合のニュージャージー・アプローチは、MITアプローチよりも良いアプローチであると信じています。
 
-Two famous people, one from MIT and another from Berkeley (but working on Unix) once met to discuss operating system issues. The person from MIT was knowledgeable about ITS (the MIT AI Lab operating system) and had been reading the Unix sources. He was interested in how Unix solved the PC loser-ing problem.
+まず、MITとニュージャージーの区別が有効であり、それぞれの哲学の支持者が実際に自分の哲学が優れていると信じていることを示す物語を再話しよう。
 
-The PC loser-ing problem occurs when a user program invokes a system routine to perform a lengthy operation that might have significant state, such as IO buffers. If an interrupt occurs during the operation, the state of the user program must be saved. Because the invocation of the system routine is usually a single instruction, the PC of the user program does not adequately capture the state of the process. The system routine must either back out or press forward. The right thing is to back out and restore the user program PC to the instruction that invoked the system routine so that resumption of the user program after the interrupt, for example, re-enters the system routine. It is called PC loser-ing because the PC is being coerced into loser mode, where loser is the affectionate name for user at MIT.
+MITとバークレー（ただしUnixの研究者）の2人の有名人が、オペレーティングシステムの問題を議論するために会ったことがあります。MITの人はITS(MIT AIラボのオペレーティング・システム)に詳しく、Unixのソースも読んでいたそうです。彼は、UnixがPCの敗者復活問題をどのように解決するかに興味を持っていました。
 
-The MIT guy did not see any code that handled this case and asked the New Jersey guy how the problem was handled. The New Jersey guy said that the Unix folks were aware of the problem, but the solution was for the system routine to always finish, but sometimes an error code would be returned that signaled that the system routine had failed to complete its action. A correct user program, then, had to check the error code to determine whether to simply try the system routine again. The MIT guy did not like this solution because it was not the right thing.
+PCロスタイム問題は、ユーザープログラムがシステムルーチンを呼び出して、IOバッファのような重要な状態を持つ可能性のある長時間の処理を実行するときに発生します。操作中に割り込みが発生した場合、ユーザープログラムの状態を保存する必要があります。システムルーチンの呼び出しは通常1命令であるため、ユーザプログラムのPCはプロセスの状態を十分に把握することができません。システムルーチンは、バックアウトするか、フォワードを押さなければならない。正しいのは、バックアウトしてユーザプログラムのPCをシステムルーチンを呼び出した命令に戻し、例えば割り込み後のユーザプログラムの再開がシステムルーチンに再入力するようにすることである。PCを強制的にloserモードにすることからPC loser-ingと呼ばれる。loserはMITにおけるユーザーの愛称である。
+
+MITの担当者は、このケースに対応したコードを見かけなかったので、ニュージャージー州の担当者に、この問題はどう処理されているのかと尋ねた。ニュージャージーの男は、Unixの人たちはこの問題を認識していたが、解決策はシステムルーチンが常に終了することだったが、時にはシステムルーチンがその動作を完了できなかったことを示すエラーコードが返されることがあった、と言った。正しいユーザープログラムは、このエラーコードをチェックして、単純にシステムルーチンをもう一度試すべきかどうかを判断しなければならない。MITの担当者は、この解決策が正しいものでないことを嫌った。
 
 The New Jersey guy said that the Unix solution was right because the design philosophy of Unix was simplicity and that the right thing was too complex. Besides, programmers could easily insert this extra test and loop. The MIT guy pointed out that the implementation was simple but the interface to the functionality was complex. The New Jersey guy said that the right tradeoff has been selected in Unix—namely, implementation simplicity was more important than interface simplicity.
 
