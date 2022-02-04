@@ -219,28 +219,28 @@ PCロスタイム問題は、ユーザープログラムがシステムルーチ
 
 MITの担当者は、このケースに対応したコードを見かけなかったので、ニュージャージー州の担当者に、この問題はどう処理されているのかと尋ねた。ニュージャージーの男は、Unixの人たちはこの問題を認識していたが、解決策はシステムルーチンが常に終了することだったが、時にはシステムルーチンがその動作を完了できなかったことを示すエラーコードが返されることがあった、と言った。正しいユーザープログラムは、このエラーコードをチェックして、単純にシステムルーチンをもう一度試すべきかどうかを判断しなければならない。MITの担当者は、この解決策が正しいものでないことを嫌った。
 
-The New Jersey guy said that the Unix solution was right because the design philosophy of Unix was simplicity and that the right thing was too complex. Besides, programmers could easily insert this extra test and loop. The MIT guy pointed out that the implementation was simple but the interface to the functionality was complex. The New Jersey guy said that the right tradeoff has been selected in Unix—namely, implementation simplicity was more important than interface simplicity.
+ニュージャージーの男は、Unixの設計思想はシンプルであり、正しいことは複雑すぎるから、Unixの解決策は正しいのだと言った。それに、プログラマーはこの余分なテストやループを簡単に挿入することができたのです。MITの人は、実装は単純だが、機能へのインターフェースが複雑だと指摘した。ニュージャージーの男は、Unix では正しいトレードオフが選択されてきた、つまり、実装の単純さはインターフェースの単純さよりも重要であると言いました。
 
-The MIT guy then muttered that sometimes it takes a tough man to make a tender chicken, but the New Jersey guy didn’t understand (I’m not sure I do either).
+MITの男は、時には柔らかいチキンを作るにはタフな男が必要だとつぶやきましたが、ニュージャージーの男には理解できませんでした(私もそう思います)。
 
-Now I want to argue that worse-is-better is better. C is a programming language designed for writing Unix, and it was designed using the New Jersey approach. C is therefore a language for which it is easy to write a decent compiler, and it requires the programmer to write text that is easy for the compiler to interpret. Some have called C a fancy assembly language. Both early Unix and C compilers had simple structures, are easy to port, require few machine resources to run, and provide about 50%–80% of what you want from an operating system and programming language.
+さて、ここで私は、「borse-is-better」の方が良いということを主張したい。C言語はUnixを書くために設計されたプログラミング言語であり、ニュージャージー方式で設計されている。したがって、C言語はまともなコンパイラを書くのが容易な言語であり、プログラマはコンパイラが解釈しやすいテキストを書く必要がある。Cをファンシーなアセンブリ言語と呼ぶ人もいる。初期のUnixとCのコンパイラはどちらも単純な構造で、移植が容易で、実行に必要なマシンリソースも少なく、オペレーティングシステムやプログラミング言語に求めるものの50%から80%程度を提供するものでした。
 
 
-Half the computers that exist at any point are worse than median (smaller or slower). Unix and C work fine on them. The worse-is-better philosophy means that implementation simplicity has highest priority, which means Unix and C are easy to port on such machines. Therefore, one expects that if the 50% functionality Unix and C support is satisfactory, they will start to appear everywhere. And they have, haven’t they?
+どの時点でも存在するコンピュータの半分は中央値より悪い（小さいか遅い）です。UnixやC言語はそのようなコンピュータでも問題なく動作します。悪いほど良いという哲学は、実装の単純さが最も優先されるということであり、Unix や C はそのようなマシンへの移植が容易であることを意味します。したがって、もしUnixやCのサポートする50%の機能が満足できるものであれば、いたるところに出現し始めるだろうと予想される。そして、そうなったのですね。
 
-Unix and C are the ultimate computer viruses.
+UnixとCは究極のコンピュータウイルスなのだ。
 
-A further benefit of the worse-is-better philosophy is that the programmer is conditioned to sacrifice some safety, convenience, and hassle to get good performance and modest resource use. Programs written using the New Jersey approach will work well both in small machines and large ones, and the code will be portable because it is written on top of a virus.
+ワース・イズ・ベター哲学のさらなる利点は、プログラマーが、良い性能と適度なリソースの使用を得るために、安全性や利便性、手間を多少犠牲にすることを条件付けられることです。ニュージャージー方式で書かれたプログラムは、小さなマシンでも大きなマシンでもうまく動くし、ウイルスの上に書かれたコードなので移植性も高い。
 
-It is important to remember that the initial virus has to be basically good. If so, the viral spread is assured as long as it is portable. Once the virus has spread, there will be pressure to improve it, possibly by increasing its functionality closer to 90%, but users have already been conditioned to accept worse than the right thing. Therefore, the worse-is-better software first will gain acceptance, second will condition its users to expect less, and third will be improved to a point that is almost the right thing.
+忘れてはならないのは、最初のウイルスが基本的に良いものでなければならないということです。そうであれば、ポータブルである限り、ウイルスの拡散は確実である。いったんウイルスが広まると、それを改良する圧力がかかるだろう。おそらく、機能を90%に近づけることで、ウイルスを改良しようとするだろうが、ユーザーはすでに正しいものよりも悪いものを受け入れるように仕向けられているのである。したがって、「悪いことは良いことだ」ソフトウェアは、まず受け入れられるようになり、次にユーザがより少ないものを期待するようになり、そして3番目にほぼ正しいものであるところまで改良されることになるのです。
 
-In concrete terms, even though Lisp compilers in 1987 were about as good as C compilers, there are many more compiler experts who want to make C compilers better than want to make Lisp compilers better.
+具体的には、1987年当時のLispコンパイラがCコンパイラと同程度の性能であったとしても、Lispコンパイラを良くしたい人よりもCコンパイラを良くしたい人の方が多いのです。
 
-The good news is that in 1995 we will have a good operating system and programming language; the bad news is that they will be Unix and C++.
+良いニュースは、1995年には良いオペレーティングシステムとプログラミング言語が手に入るということですが、悪いニュースは、それらがUnixとC++になるということです。
 
-There is a final benefit to worse-is-better. Because a New Jersey language and system are not really powerful enough to build complex monolithic software, large systems must be designed to reuse components. Therefore, a tradition of integration springs up.
+悪いことは良いことである、というのは最後の利点です。ニュージャージーの言語とシステムは、複雑なモノリシックなソフトウェアを構築するほど強力ではないので、大規模なシステムはコンポーネントを再利用するように設計されなければなりません。したがって、統合の伝統が湧いてくるのです。
 
-How does the right thing stack up? There are two basic scenarios: the big complex system scenario and the diamond-like jewel scenario.
+正しいものはどのように積み重ねられるのでしょうか？大きな複雑なシステムのシナリオとダイヤモンドのような宝石のシナリオの2つの基本シナリオがあります。
 
 The **big complex system scenario** goes like this:
 
