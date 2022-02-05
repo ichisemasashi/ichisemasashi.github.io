@@ -267,15 +267,15 @@ Lispの愛好家の中には、Lispのプログラミングは簡単だと信じ
 C言語では、コンパイラが多くの記述を要求し、データ型が少ないため、プログラミングは常に困難です。Lispでは、非常に性能の悪いプログラムを書くことは非常に簡単ですが、Cではほとんど不可能です。以下に挙げる性能の悪いLispプログラムの例は、いずれも有能なLispプログラマが、配備を前提とした実際のアプリケーションを書く際に書いたものです。私はこれらを非常に悲しいと思います。
 
 
-### 2.2.1 Bad Declarations
+### 2.2.1 悪い宣言
 
-This example is a mistake that is easy to make. The programmer here did not declare his arrays as fully as he could have. Therefore, each array access was about as slow as a function call when it should have been a few instructions. The original declaration was as follows:
+この例は、やりがちなミスです。このプログラマは、配列の宣言を十分に行わなかったのです。そのため、各配列へのアクセスは、数命令で済むはずなのに、関数呼び出しと同じくらい遅かったのです。元の宣言は次のようなものでした。
 
 ```
 (proclaim ’(type (array fixnum *) *ar1* *ar2* *ar3*))
 ```
 
-The three arrays happen to be of fixed size, which is reflected in the following correct declaration:
+3つの配列はたまたま固定サイズであったため，以下の正しい宣言に反映されています．
 
 ```
 (proclaim ’(type (simple-array fixnum (4)) *ar1*))
@@ -283,11 +283,11 @@ The three arrays happen to be of fixed size, which is reflected in the following
 (proclaim ’(type (simple-array fixnum (4 4 4)) *ar3*))
 ```
 
-Altering the faulty declaration improved the performance of the entire system by 20%.
+不具合のある宣言を変更したところ、システム全体の性能が20％向上した。
 
-### 2.2.2 Poor Knowledge of the Implementation
+### 2.2.2 実装の知識が乏しい
 
-The next example is where the implementation has not optimized a particular case of a general facility, and the programmer has used the general facility thinking it will be fast. Here five values are being returned in a situation where the order of side effects is critical:
+次の例は、一般的な機能の特定のケースについて実装が最適化されておらず、プログラマが高速になると思って一般的な機能を使用した場合です。ここでは、副作用の順番が重要な状況で、5つの値が返されています。
 
 ```
 (multiple-value-prog1
@@ -300,7 +300,7 @@ The next example is where the implementation has not optimized a particular case
   (f7 x y))
 ```
 
-The implementation happens to optimize multiple-value-prog1 for up to three return values, but the case of five values CONSes. The correct code follows:
+この実装では、返り値が3つまでの場合、たまたまmultiple-value-prog1が最適化されますが、5つの値の場合はCONSesです。正しいコードは以下の通り。
 
 ```
 (let ((x1 (f1 x))
@@ -313,7 +313,7 @@ The implementation happens to optimize multiple-value-prog1 for up to three retu
   (values x1 x2 x3 x4 x5))
 ```
 
-There is no reason that a programmer should know that this rewrite is needed. On the other hand, finding that performance was not as expected should not have led the manager of the programmer in question to conclude, as he did, that Lisp was the wrong language.
+この書き換えが必要であることをプログラマーが知っていなければならない理由はない。一方、パフォーマンスが期待通りでないことが分かったからといって、当該プログラマーのマネージャーが、Lispは間違った言語であると、彼のように結論づけることはないはずである。
 
 ### 2.2.3 Use of FORTRAN Idioms
 
