@@ -242,29 +242,29 @@ UnixとCは究極のコンピュータウイルスなのだ。
 
 正しいものはどのように積み重ねられるのでしょうか？大きな複雑なシステムのシナリオとダイヤモンドのような宝石のシナリオの2つの基本シナリオがあります。
 
-The **big complex system scenario** goes like this:
+**大きな複雑なシステムのシナリオ**は、次のようなものです。
 
-First, the right thing needs to be designed. Then its implementation needs to be designed. Finally it is implemented. Because it is the right thing, it has nearly 100% of desired functionality, and implementation simplicity was never a concern so it takes a long time to implement. It is large and complex. It requires complex tools to use properly. The last 20% takes 80% of the effort, and so the right thing takes a long time to get out, and it only runs satisfactorily on the most sophisticated hardware.
+まず、正しいものが設計される必要があります。次に、その実装を設計する必要があります。最後にそれを実装する。それが正しいものであるため、望まれる機能をほぼ100%備えており、実装の簡素化には関心がなかったため、実装に長い時間がかかる。大きく、複雑である。正しく使うには、複雑なツールが必要です。最後の20%に80%の労力がかかるので、正しいものを出すのに長い時間がかかり、最も洗練されたハードウェアでしか満足に動かない。
 
-The **diamond-like jewel scenario** goes like this:
+**ダイヤモンドのような宝石のシナリオ**は、こんな感じです。
 
-The right thing takes forever to design, but it is quite small at every point along the way. To implement it to run fast is either impossible or beyond the capabilities of most implementors.
+正しいものは設計に時間がかかるが、その途中のどの時点でも非常に小さいものである。高速に動作するように実装することは不可能であるか、ほとんどの実装者の能力を超えている。
 
-The two scenarios correspond to Common Lisp and Scheme. The first scenario is also the scenario for classic artificial intelligence software.
+この2つのシナリオは、Common LispとSchemeに対応する。最初のシナリオは、古典的な人工知能ソフトウェアのシナリオでもある。
 
-The right thing is frequently a monolithic piece of software, but for no reason other than that the right thing is often designed monolithically. That is, this characteristic is a happenstance.
+正しいものはしばしばモノリシックなソフトウェアになりますが、それは正しいものがしばしばモノリシックに設計されているということ以外に理由はありません。つまり、この特性は偶然の産物なのです。
 
-The lesson to be learned from this is that it is often undesirable to go for the right thing first. It is better to get half of the right thing available so that it spreads like a virus. Once people are hooked on it, take the time to improve it to 90% of the right thing.
+ここから得られる教訓は、正しいものを最初に目指すことはしばしば望ましくないということです。ウイルスのように広がるように、正しいものの半分を利用できるようにする方がよい。人々がそれに夢中になった後、時間をかけて90％の正しいものに改善するのです。
 
-A wrong lesson is to take the parable literally and to conclude that C is the right vehicle for AI software. The 50% solution has to be basically right, and in this case it isn’t.
+間違った教訓は、このたとえ話を文字通り受け取って、C言語がAIソフトウェアのための正しい手段であると結論づけることです。50％の解は基本的に正しくなければなりませんが、この場合はそうではありません。
 
-But, one can conclude only that the Lisp community needs to seriously rethink its position on Lisp design. I will say more about this later.
+しかし、LispコミュニティはLisp設計の立場を真剣に考え直す必要がある、という結論にしかなりません。これについては、後ほど詳しく述べたいと思います。
 
-## 2.2 Good Lisp Programming is Hard
+## 2.2 優れたLispプログラミングは難しい
 
-Many Lisp enthusiasts believe that Lisp programming is easy. This is true up to a point. When real applications need to be delivered, the code needs to perform well.
+Lispの愛好家の中には、Lispのプログラミングは簡単だと信じている人が少なくありません。これはある意味正しいことです。実際のアプリケーションを提供する際には、コードがうまく動作することが必要です。
 
-With C, programming is always difficult because the compiler requires so much description and there are so few data types. In Lisp it is very easy to write programs that perform very poorly; in C it is almost impossible to do that. The following examples of badly performing Lisp programs were all written by competent Lisp programmers while writing real applications that were intended for deployment. I find these quite sad.
+C言語では、コンパイラが多くの記述を要求し、データ型が少ないため、プログラミングは常に困難です。Lispでは、非常に性能の悪いプログラムを書くことは非常に簡単ですが、Cではほとんど不可能です。以下に挙げる性能の悪いLispプログラムの例は、いずれも有能なLispプログラマが、配備を前提とした実際のアプリケーションを書く際に書いたものです。私はこれらを非常に悲しいと思います。
 
 
 ### 2.2.1 Bad Declarations
