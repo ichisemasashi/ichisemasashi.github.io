@@ -315,29 +315,29 @@ C言語では、コンパイラが多くの記述を要求し、データ型が�
 
 この書き換えが必要であることをプログラマーが知っていなければならない理由はない。一方、パフォーマンスが期待通りでないことが分かったからといって、当該プログラマーのマネージャーが、Lispは間違った言語であると、彼のように結論づけることはないはずである。
 
-### 2.2.3 Use of FORTRAN Idioms
+### 2.2.3 FORTRANイディオムの使用
 
-Some Common Lisp compilers do not optimize the same way as others. The following expression is sometimes used:
+Common Lispコンパイラの中には、他のコンパイラと同じように最適化しないものがあります。次のような表現が使われることがあります。
 
 ```
 (* -1 <form>)
 ```
 
-when compilers often produce better code for this variant:
+というのも、コンパイラはしばしばこの変種に対してよりよいコードを生成するからです。
 
 ```
 (<form>)
 ```
 
-Of course, the first is the Lisp analog of the FORTRAN idiom:
+もちろん、1つ目はFORTRANイディオムのLispアナログである。
 
 ```
 -1*<form>
 ```
 
-### 2.2.4 Totally Inappropriate Data Structures
+### 2.2.4 まったくもって不適切なデータ構造
 
-Some might find this example hard to believe. This really occurred in some code I’ve seen:
+この例は信じられないと思われるかもしれません。これは私が見たいくつかのコードで実際に起こったことです。
 
 ```
 (defun make-matrix (n m)
@@ -356,65 +356,65 @@ Some might find this example hard to believe. This really occurred in some code 
                    (nth i (nth j m2)))))))))
 ```
 
-What’s worse is that in the particular application, the matrices were all fixed size, and matrix arithmetic would have been just as fast in Lisp as in FORTRAN.
+さらに悪いことに、このアプリケーションでは、行列はすべて固定サイズであり、LispでもFORTRANと同様に行列演算が高速に行えたはずです。
 
-This example is bitterly sad: The code is absolutely beautiful, but it adds matrices slowly. Therefore it is excellent prototype code and lousy production code. You know, you cannot write production code asbadasthisinC.
+この例では、コードは非常に美しいのですが、行列を追加するのが遅いのです。したがって、これは優れたプロトタイプコードであり、お粗末なプロダクションコードである。Cではこれほどひどいプロダクションコードは書けない。
 
-## 2.3 Integration is God
+## 2.3 統合は神
 
-In the worse-is-better world, integration is linking your .o files together, freely intercalling functions, and using the same basic data representations. You don’t have a foreign loader, you don’t coerce types across function-call boundaries, you don’t make one language dominant, and you don’t make the woes of your implementation technology impact the entire system.
+悪いことは良いことだ。統合とは、.oファイルをリンクし、関数を自由に相互呼び出し、同じ基本データ表現を使用することである。外字ローダを持たず、関数呼び出しの境界を越えて型を強制せず、1つの言語を支配的にせず、実装技術の悩みをシステム全体に影響させないことです。
 
-The very best Lisp foreign functionality is simply a joke when faced with the above reality. Every item on the list can be addressed in a Lisp implementation. This is just not the way Lisp implementations have been done in the right thing world.
+このような現実を前にすると、どんなに優れたLispの外国語機能であっても、単なるジョークに過ぎないのです。リスト上の全ての項目はLispの実装で対処可能です。これは、Lispの実装が正しいことの世界では行われてこなかっただけです。
 
-The virus lives while the complex organism is stillborn. Lisp must adapt, not the other way around. The right thing and 2 shillings will get you a cup of tea.
+ウイルスは生きているが、複雑な生物は死産である。Lispは適応しなければならないのであって、その逆ではありません。正しいことと2シリングで紅茶が飲める。
 
-## 2.4 Non-Lisp Environments are Catching Up
+## 2.4 非Lisp環境はキャッチアップしている
 
-This is hard to face up to. For example, most C environments—initially imitative of Lisp environments—are now pretty good. Current best C environments have the following:
+これはなかなか直視できない。例えば、C言語の環境は、当初はLispの環境を模倣したものでしたが、今ではかなり良くなっています。現在の最高のC環境は次のようなものである。
 
-symbolic debuggers
-data inspectors
-source code level single stepping
-help on builtin operators
-window-based debugging
-symbolic stack backtraces
-structure editors
+- シンボリックデバッガ
+- データインスペクタ
+- ソースコードレベルでのシングルステップ
+- 組み込み演算子に関するヘルプ
+- ウィンドウベースのデバッギング
+- シンボリックスタックバックトレース
+- 構造体エディタ
 
-And soon they will have incremental compilation and loading. These environments are easily extendible to other languages, with multi-lingual environments not far behind.
+そして、まもなくインクリメンタル・コンパイルとロードが可能になるでしょう。これらの環境は他の言語にも容易に拡張可能であり、多言語環境もそう遠くない将来に実現されるでしょう。
 
-Though still the best, current Lisp environments have several prominent failures. First, they tend to be window-based but not well integrated. That is, related information is not represented so as to convey the relationship. A multitude of windows does not mean integration, and neither does being implemented in the same language and running in the same image. In fact, I believe no currently available Lisp environment has any serious amount of integration.
+しかし、現在のLisp環境にはいくつかの欠点があります。第一に、ウィンドウベースの環境でありながら、うまく統合されていない傾向がある。つまり、関連する情報が関係性を伝えるように表現されていない。ウィンドウがたくさんあることは統合を意味しないし、同じ言語で実装され、同じイメージで動作することも意味しない。実際、現在利用可能なLisp環境では、深刻な統合がなされていないように思います。
 
-Second, they are not persistent. They seemed to be defined for a single login session. Files are used to keep persistent data—how 1960’s.
+第二に、永続的でないことです。一回のログインセッションのために定義されたようなものです。ファイルは永続的なデータを保持するために使われるもので、1960年代のものです。
 
-Third, they are not multi-lingual even when foreign interfaces are available.
+第三に、外国語のインターフェースがあっても、多言語化されていない。
 
-Fourth, they do not address the software lifecycle in any extensive way. Documentation, specifications, maintenance, testing, validation, modification, and customer support are all ignored.
+第四に、ソフトウェアのライフサイクルを広範に扱っていない。文書化、仕様書、メンテナンス、テスト、検証、修正、カスタマーサポートのすべてが無視されている。
 
-Fifth, information is not brought to bear at the right times. The compiler is able to provide some information, but the environment should be able to generally know what is fully defined and what is partially defined. Performance monitoring should not be a chore.
+第五に、情報が適切なタイミングでもたらされない。コンパイラはある程度の情報を提供できるが、何が完全に定義され、何が部分的に定義されているかは、環境側で概ね把握できるはずである。性能監視が面倒であってはならない。
 
-Sixth, using the environment is difficult. There are too many things to know. It’s just too hard to manage the mechanics.
+第六に、環境の利用が難しいということです。知らなければならないことが多すぎる。仕組みを管理するのが難しすぎるのです。
 
-Seventh, environments are not multi-user when almost all interesting software is now written in groups.
+第七に、興味深いソフトウェアのほとんどすべてがグループで書かれている現在、環境はマルチユーザーではありません。
 
-The real problem has been that almost no progress in Lisp environments has been made in the last 10 years.
+本当の問題は、この10年間、Lisp環境においてほとんど進歩がなかったことです。
 
-## 3.0 How Lisp Can Win Big
+## 3.0 Lispが大勝利する方法
 
-When the sun comes up, I’ll be on top.
+太陽が昇るとき、私は頂点に立つ。
 
-You’re right down there looking up.
+下界で見上げている
 
-On my way to come up here,
+ここに登ってくる途中
 
-I’m gonna see you waiting there.
+そこで待っている君を見ることになる。
 
-I’m on my way to get next to you.
+君の隣に行く途中なんだ
 
-I know now that I’m gonna get there.
+今なら間に合うってわかるよ
 
 **? & The Mysterians**
 
-The gloomy interlude can have a happy ending.
+陰鬱な幕間は、ハッピーエンドになることもある。
 
 ## 3.1 Continue Standardization Progress
 
