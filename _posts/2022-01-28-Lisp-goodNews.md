@@ -416,63 +416,63 @@ Common Lispコンパイラの中には、他のコンパイラと同じように
 
 陰鬱な幕間は、ハッピーエンドになることもある。
 
-## 3.1 Continue Standardization Progress
+## 3.1 標準化の進展の継続
 
-We need to bury our differences at the ISO level and realize that there is a short term need, which must be Common Lisp, and a long term need, which must address all the issues for practical applications.
+ISOレベルでの相違を埋め、短期的にはCommon Lispでなければならないし、長期的には実用化のためのあらゆる問題に対処しなければならないことを認識する必要があります。
 
-We’ve seen that the right thing attitude has brought us a very large, complex-to-understand, and complex-to-implement Lisp—Common Lisp that solves way too many problems. We need to move beyond Common Lisp for the future, but that does not imply giving up on Common Lisp now. We’ve seen it is possible to do delivery of applications, and I think it is possible to provide tools that make it easier to write applications for deployment. A lot of work has gone into getting Common Lisp to the point of a right thing in many ways, and there are viable commercial implementations. But we need to solve the delivery and integration problems in spades.
+正しいことをしようという姿勢が、非常に大きく、理解しにくく、実装が複雑なLisp-Common Lispをもたらし、多くの問題を解決していることを私たちは目の当たりにしてきました。将来的にはCommon Lispを越える必要がありますが、それは今すぐCommon Lispを諦めるということではありません。アプリケーションの配布が可能であることは分かっていますし、配布用のアプリケーションを簡単に書けるようなツールを提供することも可能だと考えています。Common Lispをいろいろな意味で正しいものにするために多くの作業が行われ、実行可能な商用実装も存在します。しかし、私たちは配信と統合の問題を十分に解決する必要があります。
 
-Earlier I characterized the MIT approach as often yielding stillborn results. To stop Common Lisp standardization now is equivalent to abortion, and that is equivalent to the Lisp community giving up on Lisp. If we want to adopt the New Jersey approach, it is wrong to give up on Lisp, because C just isn’t the right language for AI.
+先ほど私は、MITのアプローチはしばしば死産をもたらすと特徴づけました。今、Common Lispの標準化を止めることは中絶に等しく、それはLispコミュニティがLispを見限ることに等しいのです。ニュージャージー方式を採用するのであれば、Lispを諦めるのは間違いです。C言語はAIに適した言語ではありませんから。
 
-It also simply is not possible to dump Common Lisp now, work on a new standard, and then standardize in a timely fashion. Common Lisp is all we have at the moment. No other dialect is ready for standardization.
+また、今すぐCommon Lispを捨てて、新しい標準に取り組み、タイムリーに標準化することは不可能です。現時点ではCommon Lispが全てです。他の方言は標準化の準備ができていないのです。
 
-Scheme is a smaller Lisp, but it also suffers from the MIT approach. It is too tight and not appropriate for large-scale software. At least Common Lisp has some facilities for that.
+Schemeはより小さなLispですが、MITのアプローチの影響を受けており、 あまりにタイトで大規模なソフトウェアには向いていません。少なくともCommon Lispはそのための機能を備えています。
 
-I think there should be an internationally recognized standard for Common Lisp. I don’t see what is to be gained by aborting the Common Lisp effort today just because it happens to not be the best solution to a commercial problem. For those who believe Lisp is dead or dying, what does killing off Common Lisp achieve but to convince people that the Lisp community kills its own kind? I wish less effort would go into preventing Common Lisp from becoming a standard when it cannot hurt to have several Lisp standards.
+Common Lispには国際的に通用する標準が必要だと思います。Common Lispが商業的な問題に対して最適な解決策でないからといって、Common Lispの取り組みを今すぐ中止して何の得があるのでしょう。Lispは死んだ、あるいは死につつあると信じている人々にとって、Common Lispを中止することは、Lispコミュニティが自分たちの仲間を殺していることを確信させる以外の何ものでもないでしょう。Lispの標準がいくつかあっても困らないのに、 Common Lispが標準になるのを阻止することに力を注ぐのはやめて欲しいです。
 
-On the other hand, there should be a strong effort towards the next generation of Lisp. The worst thing we can do is to stand still as a community, and that is what is happening.
+一方で、次世代Lispに向けた努力も必要です。一番いけないのは、コミュニティとして立ち止まってしまうことです。
 
-All interested parties must step forward for the longer-term effort.
+すべての利害関係者は、より長期的な努力のために前に進まなければなりません。
 
-## 3.2 Retain the High Ground in Environments
+## 3.2 環境の高みを目指す
 
-I think there is a mistake in following an environment path that creates monolithic environments. It should be possible to use a variety of tools in an environment, and it should be possible for those who create new tools to be able to integrate them into the environment.
+一枚岩の環境を作るような環境路線は間違いだと思うんです。環境の中でさまざまなツールを使うことができ、新しいツールを作った人がそれを環境に組み込むことができるようにすべきです。
 
-I believe that it is possible to build a tightly integrated environment that is built on an open architecture in which all tools, including language processors, are protocol-driven. I believe it is possible to create an environment that is multi-lingual and addresses the software lifecycle problem without imposing a particular software methodology on its users.
+言語処理系も含め、すべてのツールがプロトコル駆動で、オープンアーキテクチャで構築された、緊密に統合された環境を構築することが可能だと考えています。特定のソフトウェア手法をユーザーに押し付けることなく、多言語対応でソフトウェアライフサイクルの問題に対応した環境を構築することは可能だと思います。
 
-Our environments should not discriminate against non-Lisp programmers the way existing environments do. Lisp is not the center of the world.
+私たちの環境は、既存の環境のように非Lispプログラマーを差別するものであってはならないのです。Lispは世界の中心ではありません。
 
-## 3.3 Implement Correctly
+## 3.3 正しく実装する
 
-Even though Common Lisp is not structured as a kernel plus libraries, it can be implemented that way. The kernel and library routines can be in the form of .o files for easy linking with other, possibly non-Lisp, modules; the implementation must make it possible to write, for example, small utility programs. It is also possible to piggyback on existing compilers, especially those that use common back ends. It is also possible to implement Lisp so that standard debuggers, possibly with extensions, can be made to work on Lisp code.
+Common Lispはカーネル＋ライブラリという構造ではないが、そのように実装することは可能である。カーネルとライブラリルーチンは、他のモジュール（Lispでない場合もある）と容易にリンクできるように.oファイルの形式とすることができます。この実装では、例えば小さなユーティリティプログラムを書くことができるようにしなければなりません。また、既存のコンパイラ、特に共通のバックエンドを使用するコンパイラにおんぶに抱っこすることも可能です。また、標準的なデバッガを拡張してLispのコードで動作するように実装することも可能である。
 
-It might take time for developers of standard tools to agree to extend their tools to Lisp, but it certainly won’t happen until our (exceptional) language is implementedmore like ordinary ones.
+標準的なツールの開発者が彼らのツールをLispに拡張することに同意するには時間がかかるかもしれませんが、我々の（例外的な）言語が通常の言語と同様に実装されるまでは確実に実現しないでしょう。
 
-## 3.4 Achieve Total Integration
+## 3.4 トータルインテグレーションの実現
 
-I believe it is possible to implement a Lisp and surrounding environment which has no discrimination for or against any other language. It is possible using multi-lingual environments, clever representations of Lisp data, conservative garbage collection, and conventional calling protocols to make a completely integrated Lisp that has no demerits.
+私は、他の言語との差別がないLispとその周辺環境を実現することは可能だと考えています。多言語環境、Lispデータの巧みな表現、保守的なガベージコレクション、従来の呼び出しプロトコルを用いて、デメリットのない完全統合型Lispを作ることが可能である。
 
-## 3.5 Make Lisp the Premier Prototyping Language
+## 3.5 Lispをプロトタイピング言語の本命とする
 
-Lisp is still the best prototyping language. We need to push this forward. A multi-lingual environment could form the basis or infrastructure for a multi-lingual prototyping system. This means doing more research to find new ways to exploit Lisp’s strengths and to introduce new ones.
+Lispは今でも最高のプロトタイピング言語です。これを推し進める必要がある。多言語環境は、多言語プロトタイピングシステムの基礎やインフラを形成することができます。これは、Lispの長所を生かし、新しい長所を導入するための研究を重ねることを意味します。
 
-Prototyping is the act of producing an initial implementation of a complex system. A prototype can be easily instrumented, monitored, and altered. Prototypes are often built from disparate parts that have been adapted to a new purpose. Descriptions of the construction of a prototype often involve statements about modifying the behavioral characteristics of an existing program. For example, suppose there exists a tree traversal program. The description of a prototype using this program might start out by saying something like
+プロトタイピングとは、複雑なシステムの初期実装を作成することです。プロトタイプは簡単に計測、監視、変更することができます。プロトタイプはしばしば、新しい目的に適合させた異種の部品から作られる。プロトタイプの構築に関する記述には、既存のプログラムの動作特性を変更する記述が含まれることが多い。例えば、木探索プログラムが存在するとする。このプログラムを使ったプロトタイプの記述は、まず次のような記述から始まる。
 
-  Let S1 be the sequence of leaf nodes visited by P on tree T1 and S2 the leaf nodes visited by P on tree T2. Let C be a correspondence between S1 and S2 where f:S1 → S2 maps elements to corresponding elements.
+  木T1上のPが訪れるリーフノードの列をS1、木T2上のPが訪れるリーフノードの列をS2とする。S1とS2の間の対応関係をCとし、f:S1 → S2が要素を対応する要素に写すとする。
 
-Subsequent statements might manipulate the correspondence and use f. Once the definition of a leaf node is made explicit, this is a precise enough statement for a system to be able to modify the traversal routine to support the correspondence and f.
+後続の文はこの対応関係を操作し、fを使用することができる。一旦リーフノードの定義が明示されれば、これは、システムがトラバーサル・ルーチンを修正し、対応関係とfをサポートすることができるのに十分正確なステートメントである。
 
-A language that describes the modification and control of an existing program can be termed a program language. Program languages be built on one or several underlying programming languages, and in fact can be implemented as part of the functionality of the prototyping environment. This view is built on the insight that an environment is a mechanism to assist a programmer in creating a working program, including preparing the source text. There is no necessary requirement that an environment be limited to working only with raw source text. As another example, some systems comprise several processes communicating through channels. The creation of this part of the system can be visual, with the final result produced by the environment being a set of source code in several languages, build scripts, link directives, and operating system calls. Because no single programming language encompasses the program language, one could call such a language an epi-language.
+既存のプログラムの修正・制御を記述する言語をプログラム言語と呼ぶことができる。プログラム言語は、1つまたは複数の基礎となるプログラミング言語の上に構築され、実際、プロトタイピング環境の機能の一部として実装することができる。この考え方は、環境とは、プログラマがプログラムを作成する際に、ソーステキストの準備も含めて支援するメカニズムであるという洞察に基づいている。環境は、生のソーステキストのみを扱うことに限定される必要はありません。別の例として、あるシステムはチャネルを介して通信するいくつかのプロセスから構成される。システムのこの部分の作成は視覚的に行うことができ、環境による最終結果は、複数の言語によるソースコード、ビルドスクリプト、リンク指示、オペレーティングシステムコールのセットとなります。プログラム言語を包括する単一の言語は存在しないため、このような言語をエピ言語と呼ぶこともできる。
 
-## 3.6 The Next Lisp
+## 3.6 次のLisp
 
-I think there will be a next Lisp. This Lisp must be carefully designed, using the principles for success we saw in worse-is-better.
+私は、次のLispがあると思います。このLispは、「悪いことは良いことだ」で見た成功の原則を用いて、注意深く設計されなければならない。
 
-There should be a simple, easily implementable kernel to the Lisp. That kernel should be both more than Scheme— modules and macros—and less than Scheme—continuations remain an ugly stain on the otherwise clean manuscript of Scheme.
+Lispには、シンプルで簡単に実装できるカーネルが必要です。このカーネルはScheme以上(モジュールやマクロ)でなければならないし、Scheme未満(継続はSchemeの原稿に残る醜い汚れ)でなければならない。
 
-The kernel should emphasize implementational simplicity, but not at the expense of interface simplicity. Where one conflicts with the other, the capability should be left out of the kernel. One reason is so that the kernel can serve as an extension language for other systems, much as GNU Emacs uses a version of Lisp for defining Emacs macros.
+カーネルは実装の簡潔さを重視すべきだが、インターフェースの簡潔さを犠牲にしてはならない。一方が他方に抵触する場合、その機能はカーネルから排除されるべきなのだ。その理由の一つは、GNU EmacsがEmacsマクロの定義にLispのバージョンを使っているように、カーネルが他のシステムの拡張言語として機能するようにするためです。
 
-Some aspects of the extreme dynamism of Common Lisp should be reexamined, or at least the tradeoffs reconsidered. For example, how often does a real program do this?
+Common Lispの極端なダイナミズムは再検討されるべきですし、少なくともトレードオフは再考されるべきです。例えば、実際のプログラムではどれくらいの頻度でこのようなことが行われているのでしょうか。
 
 ```
 (defun f ...)
@@ -481,44 +481,44 @@ Some aspects of the extreme dynamism of Common Lisp should be reexamined, or at 
   (setf (symbol-function ’f) #’(lambda ...)) ...)
 ```
 
-Implementations of the next Lisp should not be influenced by previous implementations to make this operation fast, especially at the expense of poor performance of all other function calls.
+次のLispの実装は、これまでの実装の影響を受けてこの操作を高速化すること、特に他の全ての関数呼び出しの性能低下を犠牲にするようなことがあってはならないのです。
 
-The language should be segmented into at least four layers:
+言語は少なくとも4つのレイヤーに区分けされるべきである。
 
-1. The kernel language, which is small and simple to implement. In all cases, the need for dynamic redefinition should be re-examined to determine that support at this level is necessary. I believe nothing in the kernel need be dynamically redefinable.
-2. A linguistic layer for fleshing out the language. This layer may have some implementational difficulties, and it will probably have dynamic aspects that are too expensive for the kernel but too important to leave out.
-3. A library. Most of what is in Common Lisp would be in this layer.
-4. Environmentally provided epilinguistic features.
+1. カーネル言語。これは小さく、実装が簡単である。すべての場合において、動的再定義の必要性を再検討し、このレベルでのサポートが必要であることを判断する必要があります。私は、カーネルには動的な再定義が必要なものはないと考えています。
+2. 言語層：言語をより具体化するための言語層。この層には実装上の困難が伴うかもしれません。また、カーネルにとっては高価すぎるが、省くには重要すぎる動的な側面があるかもしれません。
+3. ライブラリ。Common Lispにあるほとんどのものがこの層に含まれるでしょう。
+4. 環境から提供されるエピリンガルな機能。
 
-In the first layer I include conditionals, function calling, all primitive data structures, macros, single values, and very basic object-oriented support.
+第1層では、条件分岐、関数呼び出し、すべてのプリミティブなデータ構造、マクロ、単一値、そしてごく基本的なオブジェクト指向のサポートが含まれています。
 
-In the second layer I include multiple values and more elaborate object-oriented support. The second layer is for difficult programming constructs that are too important to leave to environments to provide, but which have sufficient semantic consequences to warrant precise definition. Some forms of redefinition capabilities might reside here.
+第二層では、複数の値や、より精巧なオブジェクト指向のサポートが含まれます。第2層は、環境に任せるには重要すぎるが、正確な定義が必要なほど意味的に重要な、難しいプログラミング構文のための層です。ある種の再定義機能はここに位置づけられるかもしれない。
 
-In the third layer I include sequence functions, the elaborate IO functions, and anything else that is simply implemented in the first and possibly the second layers.
+第3層には、シーケンス関数、精巧なIO関数、その他第1層と第2層で単純に実装されたものを含みます。
 
-These functions should be linkable.
+これらの関数はリンク可能であるべきです。
 
-In the fourth layer I include those capabilities that an environment can and should provide, but which must be standardized. A typical example is defmethod from CLOS. In CLOS, generic functions are made of methods, each method applicable to certain classes. The first layer has a definition form for a complete generic function -that is, for a generic function along with all of its methods, defined in one place (which is how the layer 1 compiler wants to see it). There will also be means of associating a name with the generic function. However, while developing a system, classes will be defined in various places, and it makes sense to be able to see relevant (applicable) methods adjacent to these classes. defmethod is the construct to define methods, and defmethod forms can be placed anywhere amongst other definitional forms.
+第4層には、環境が提供でき、また提供すべきでありながら、標準化されなければならない機能が含まれます。典型的な例は、CLOSのdefmethodです。CLOSでは、汎用的な関数はメソッドで構成され、各メソッドは特定のクラスに適用される。つまり、ジェネリック関数とそのすべてのメソッドが一箇所に定義されています（これは、第1層のコンパイラがどのように見たいかを示しています）。また、ジェネリック関数に名前を付ける手段も用意されている。defmethodはメソッドを定義するためのコンストラクトであり、defmethodフォームは他の定義フォームに混じってどこにでも置くことができる。
 
-But methods are relevant to each class on which the method is specialized, and also to each subclass of those classes. So, where should the unique defmethod form be placed? The environment should allow the programmer to see the method definition in any or all of these places, while the real definition should be in some particular place. That place might as well be in the single generic function definition form, and it is up to the environment to show the defmethod equivalent near relevant classes when required, and to accept as input the source in the form of a defmethod (which it then places in the generic function definition).
+しかし、メソッドは、そのメソッドが特化されている各クラスと、それらのクラスの各サブクラスに関連します。では、固有のdefmethod形式はどこに置けばいいのでしょうか？プログラマがこれらの場所のいずれか、あるいはすべてでメソッドの定義を見ることができるような環境であるべきで、本当の定義はある特定の場所にあるべきでしょう。その場所は、単一の汎用関数定義フォームの中にあるのと同じかもしれません。必要なときに関連するクラスの近くにdefmethodに相当するものを表示し、defmethodのフォームのソースを入力として受け入れる（そして、汎用関数定義に配置する）のは、環境次第なのです。
 
-We want to standardize the defmethod form, but it is a linguistic feature provided by the environment. Similarly, many uses of elaborate lambda-list syntax, such as keyword arguments, are examples of linguistic support that the environment can provide possibly by using color or other adjuncts to the text.
+私たちはdefmethodの形式を標準化したいが、それは環境が提供する言語的特徴である。同様に、キーワード引数などの精巧なラムダリスト構文の多くの使用は、おそらく色やテキストへの他の補助を使用することによって、環境が提供できる言語的支援の例です。
 
-In fact, the area of function-function interfaces should be re-examined to see what sorts of argument naming schemes are needed and in which layer they need to be placed.
+実際、関数-関数インターフェイスの分野では、どのような種類の引数命名法が必要で、どの層に配置する必要があるか、再検討されるべきです。
 
-Finally, note that it might be that every layer 2 capability could be provided in a layer 1 implementation by an environment.
+最後に、すべてのレイヤー2の機能は、環境によるレイヤー1の実装で提供される可能性があることに注意してください。
 
-## 3.7 Help Application Writers Win
+## 3.7 アプリケーションライターを支援する
 
-The Lisp community has too few application writers. The Lisp vendors need to make sure these application writers win. To do this requires that the parties involved be open about their problems and not adversarial. For example, when an expert system shell company finds problems, it should open up its source code to the Lisp vendor so that both can work towards the common goal of making a faster, smaller, more deliverable product. And the Lisp vendors should do the same.
+Lispコミュニティはアプリケーションライターの数が少なすぎる。Lispベンダはこのようなアプリケーションライターを獲得する必要があります。そのためには、関係者が敵対することなく、問題をオープンにすることが必要です。例えば、エキスパートシステムのシェル会社が問題を発見した場合、そのソースコードをLispベンダーに公開し、より速く、より小さく、より実現可能な製品を作るという共通の目標に向かって、両者が協力できるようにすべきです。そして、Lispベンダーも同じようにすべきです。
 
-The business leadership of the AI community seems to have adopted the worst caricature-like traits of business practice: secrecy, mistrust, run-up-the-score competitiveness. We are an industry that has enough common competitors without searching for them among our own ranks.
+AIコミュニティのビジネスリーダーは、秘密主義、不信感、点数稼ぎといった、戯画化されたビジネス慣行の最悪の特徴を採用しているように思えます。私たちの業界は、自分たちの仲間から競争相手を探さなくても、共通の競争相手を十分に持っているのです。
 
-Sometimes the sun also rises.
+時には、太陽も昇る。
 
-References
+参考文献
 
-[1] ? & the Mysterians, 96 Tears, Pa-go-go Records 1966, re-released on Cameo Records, September 1966.
+[1] ? & ザ・ミステリアンズ『96ティアーズ』パゴーゴーレコード1966年、カメオレコード1966年9月に再リリースされた。
 
 
 
@@ -528,9 +528,9 @@ References
 
 -----
 
-1. Adapting the equation to a more normal mix of instructions involves only changing the value of Pft, and it is not unusual for the adjusted Pft to lie in the range of 100 to 1000.
-2. This is in contrast to a language such as C where the default is a sort of “machine-independent”’ assembly language, and including other tools requires an explicit use of the appropriate library. Of course, this may lead to a more deliberate style of programming, but it is at the cost of making the programmer’s job more tedious.
-3. The name Treeshaker is meant to be evocative of the idea of actually shaking a tree to dislodge dead branches or other trash.
+1. この式を通常の命令構成に適応させると、Pftの値を変えるだけでよく、調整後のPftは100から1000の範囲になることも珍しくありません。
+2. これは、C言語のような「機械に依存しない」アセンブリ言語がデフォルトであり、他のツールを含めるには適切なライブラリを明示的に使用する必要があるのとは対照的である。もちろん、これはより意図的なプログラミングにつながるかもしれないが、プログラマーの仕事をより面倒なものにするという代償を払っている。
+3. Treeshakerという名前は、実際に木を揺すって枯れ枝やゴミを取り除くことを連想させるという意味があります。
 
 
 
