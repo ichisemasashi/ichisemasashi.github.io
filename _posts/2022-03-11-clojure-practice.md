@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Lisp: Clojureの練習サイト
+title: Clojureの練習サイト
 date:   2022-03-11
 categories: Blog Clojure
 ---
