@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Lisp: Good News, Bad News, How to Win Big
-date:   2022-1-28
+date:   2022-01-28
 categories: Blog 勝手翻訳 Lisp
 ---
 
