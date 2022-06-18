@@ -8,9 +8,9 @@ categories: Blog Clojure
 # Clojureの練習のためのサイト
 
 「Coding Challenges for Clojure」より
-- [4ever-clojre](https://practical.li/clojure/coding-challenges/4clojure)
-- [4clojure](https://github.com/4clojure/4clojure)
-- [Exercism.io](https://practical.li/clojure/coding-challenges/exercism)
+- [4ever-clojre](https://github.com/ichisemasashi/4ever-clojure)
+- [4clojure](https://github.com/ichisemasashi/4clojure)
+- [Exercism.io](https://exercism.org/tracks/clojure)
 - [CodeWars](https://www.codewars.com/)
 - [ClojureScript Koans](http://clojurescriptkoans.com/)
 - [Advent of Code](https://practical.li/clojure/coding-challenges/advent-of-code.html)
